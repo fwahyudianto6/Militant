@@ -1,8 +1,78 @@
-# Compiled class file
-*.class
+# Gradle files
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
 
-# Log file
+# Android Studio files
+.idea/
+*.iml
+*.hprof
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log files
 *.log
+*.gz
+
+# Android specific files
+/.cxx/
+/externalNativeBuild/
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+*.so
+*.jar
+*.war
+*.ear
+*.nar
+*.obj
+*.lib
+*.orig
+/out/
+captures/
+outputs/
+
+# Kotlin-specific files
+*.kotlin_metadata
+*.kts.metadata
+
+# IntelliJ IDEA caches
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/libraries/
+.idea/modules.xml
+.idea/.name
+.idea/vcs.xml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Test reports
+/test-results/
+/test-output/
+**/build/intermediates/
+/build/generated/
+
+# Miscellaneous
+!.gitignore
+/.idea/
+/build/
+
+# ProGuard files
+*.mapping
+
+# Ignore crashlytics and Firebase analytics files
+fabric.properties
+crashlytics.properties
+
+# Keystore files
+*.jks
+*.keystore
 
 # BlueJ files
 *.ctxt
@@ -11,10 +81,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
-*.war
-*.nar
-*.ear
 *.zip
 *.tar.gz
 *.rar
