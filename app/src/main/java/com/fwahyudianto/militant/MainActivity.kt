@@ -1,12 +1,16 @@
 package com.fwahyudianto.militant
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fwahyudianto.militant.data.model.Player
@@ -42,6 +46,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //  Initial Option Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_home, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    //  Selected Option Menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.imenu_list -> {
+                oRvPlayer.layoutManager = LinearLayoutManager(this)
+            }
+
+            R.id.imenu_grid -> {
+                oRvPlayer.layoutManager = GridLayoutManager(this, 2)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     //  Get Player List
     @SuppressLint("Recycle")
     private fun getPlayer(): ArrayList<Player> {
@@ -60,7 +86,11 @@ class MainActivity : AppCompatActivity() {
 
     //  Show Player List
     private fun showRecyclerList() {
-        oRvPlayer.layoutManager = LinearLayoutManager(this)
+        if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            oRvPlayer.layoutManager = GridLayoutManager(this, 2)
+        } else {
+            oRvPlayer.layoutManager = LinearLayoutManager(this)
+        }
 
         val lsPlayerAdapter = PlayerListAdapter(arrPlayerList)
         oRvPlayer.adapter = lsPlayerAdapter
@@ -74,7 +104,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Show Player selected
-    private fun showSelectedItem(p_strPlayer: Player) {
-        Toast.makeText(this, "You Choose " + p_strPlayer.name, Toast.LENGTH_SHORT).show()
+    private fun showSelectedItem(oPlayer: Player) {
+        Toast.makeText(this, "You Choose " + oPlayer.name, Toast.LENGTH_SHORT).show()
     }
 }
