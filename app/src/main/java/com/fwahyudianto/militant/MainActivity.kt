@@ -2,6 +2,7 @@ package com.fwahyudianto.militant
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -61,7 +62,19 @@ class MainActivity : AppCompatActivity() {
     private fun showRecyclerList() {
         oRvPlayer.layoutManager = LinearLayoutManager(this)
 
-        val listHeroAdapter = PlayerListAdapter(arrPlayerList)
-        oRvPlayer.adapter = listHeroAdapter
+        val lsPlayerAdapter = PlayerListAdapter(arrPlayerList)
+        oRvPlayer.adapter = lsPlayerAdapter
+
+        //  Add Toast on Item
+        lsPlayerAdapter.setOnItemClickCallback(object : PlayerListAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Player) {
+                showSelectedItem(data)
+            }
+        })
+    }
+
+    //  Show Player selected
+    private fun showSelectedItem(p_strPlayer: Player) {
+        Toast.makeText(this, "You Choose " + p_strPlayer.name, Toast.LENGTH_SHORT).show()
     }
 }

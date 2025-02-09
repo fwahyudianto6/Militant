@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.data.model.Player
@@ -20,6 +19,12 @@ import com.fwahyudianto.militant.data.model.Player
 
 //  Player List Adapter constructor
 class PlayerListAdapter(private val oPlayerList: ArrayList<Player>) : RecyclerView.Adapter<PlayerListAdapter.ListViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Player)
+    }
+
     //  ListViewHolder constructor
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
@@ -45,8 +50,16 @@ class PlayerListAdapter(private val oPlayerList: ArrayList<Player>) : RecyclerVi
         holder.tvDescription.text = description
 
         //  Set OnClick Listener event
-        holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "You choose " + oPlayerList[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
-        }
+//        holder.itemView.setOnClickListener {
+//            Toast.makeText(holder.itemView.context, "You choose " + oPlayerList[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
+//        }
+
+        //  Set OnClick Listener event
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(oPlayerList[holder.adapterPosition]) }
+    }
+
+    //  Method setOnItemClickCallback
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
     }
 }
