@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">Militant</string>
+    <string name="players_name">Player Name</string>
+    <string name="description">Description</string>
+
+    <string name="item_grid_strFullname">AC Milan\'s Player Full Name</string>
+    <string name="menu_home_strList">List View</string>
+    <string name="menu_home_strGrid">Grid View</string>
+    <string name="menu_home_strCard">Card View</string>
+    <string name="activity_detail_strNumberProfile">AC Milan\'s Player Number Tshirt</string>
+    <string name="activity_detail_lbl_strNumber">Number</string>
+    <string name="activity_detail_lbl_strBirthdate">Birthdate</string>
+    <string name="activity_detail_lbl_strBirthplace">Birthplace</string>
+    <string name="activity_detail_strStatusMatches">Stats and Matches</string>
+    <string name="activity_detail_strTotalMatchesDescription">AC Milan\'s Player Total Matches</string>
+    <string name="activity_detail_lbl_strTotalMatches">Total Matches</string>
+    <string name="activity_detail_strTotalGoalsDescription">AC Milan\'s Player Total Goals</string>
+    <string name="activity_detail_lbl_strTotalGoals">Total Goals</string>
+    <string name="activity_detail_strLeagueMatchesDescription">AC Milan\'s Player League Matches</string>
+    <string name="activity_detail_lbl_strLeagueMatches">League Matches</string>
+    <string name="activity_detail_strLeagueGoalsDescription">AC Milan\'s Player League Goals</string>
+    <string name="activity_detail_lbl_strLeagueGoals">League Goals</string>
+
+    <!-- Player's Data -->
+    <string-array name="arrPlayersName">
+        <item>Dida</item>
+        <item>Nesta</item>
+        <item>Maldini</item>
+    </string-array>
+
+    <!-- Player's Description -->
+    <string-array name="arrPlayersDescription">
+        <item>Acquired in 1999 from Cruzeiro, Nelson Dida played for Lugano and Corinthians before consolidating his position as AC Milan�s first-choice goalkeeper starting from 2002. He was the key player in the Champions League final against Juventus, saving three penalty kicks at Old Trafford in Manchester. Repeated success in Athens in 2007, when the Rossoneri beat Liverpool. Considered one of the best goalkeepers in the third millennium, he also won a league title, an Italian League Super Cup, two European Cup Winners� Cups and a Club World Cup.</item>
+        <item>Defensive pivot at the most successful Lazio in the club�s history, Alessandro Nesta arrived at Milanello in his full maturity. He reminded fans of the best Baresi for his class, positioning and timely closing. He significantly helped Milan win the most prestigious trophies. Infallible was his penalty kick in the final in Manchester against Juventus, and amazing was his goal to Boca Juniors when Milan became the most successful club in the world.</item>
+        <item>902 official matches played and 26 trophies won in twenty-five years in Milan jersey. There are no words to describe the football career of Paolo Maldini who made his debut as a very young boy in Udine, on 20 January 1985, with coach Nils Liedholm on the bench. A triumphal ride initiated with Arrigo Sacchi and continued with Capello. In 1997 he inherited the captain�s armband from Baresi and lifted new trophies with Zaccheroni and Ancelotti. The apotheosis came on 28 May 2003, when after 40 years from Milan�s first European Champion Clubs� Cup win, he lifted, just like his father Cesare, the Champions League trophy at Old Trafford in Manchester.</item>
+    </string-array>
+
+    <!-- Player's Photo -->
+    <integer-array name="arrPlayersPhoto">
+        <item>@drawable/dida</item>
+        <item>@drawable/nesta</item>
+        <item>@drawable/paolo_maldini</item>
+    </integer-array>
 </resources>
