@@ -14,7 +14,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 // Player constructor
 data class Player(
-    val name: String,
-    val description: String,
-    val photo: Int
+    val iNoTshirt: Int,
+    val iPlayerPhoto: Int,
+    val strPlayerName: String,
+    val strPlayerFullName: String,
+    val strPlayerDescription: String,
 ) : Parcelable

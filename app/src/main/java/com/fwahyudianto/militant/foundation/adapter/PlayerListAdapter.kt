@@ -27,8 +27,10 @@ class PlayerListAdapter(private val oPlayerList: ArrayList<Player>) : RecyclerVi
 
     //  ListViewHolder constructor
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvNo: TextView = itemView.findViewById(R.id.tv_item_no)
         val imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
         val tvName: TextView = itemView.findViewById(R.id.tv_item_name)
+        val tvFullName: TextView = itemView.findViewById(R.id.tv_item_fullname)
         val tvDescription: TextView = itemView.findViewById(R.id.tv_item_description)
     }
 
@@ -44,10 +46,18 @@ class PlayerListAdapter(private val oPlayerList: ArrayList<Player>) : RecyclerVi
 
     //  Implement member RecyclerView.Adapter
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (name, description, photo) = oPlayerList[position]
+        val (no, photo, name, full_name, description) = oPlayerList[position]
+        val maxLength = 85
+
         holder.imgPhoto.setImageResource(photo)
+        holder.tvNo.text = no.toString()
         holder.tvName.text = name
-        holder.tvDescription.text = description
+        holder.tvFullName.text = full_name
+        holder.tvDescription.text = if (description.length > maxLength) {
+            description.substring(0, maxLength) + " ..."
+        } else {
+            description
+        }
 
         //  Set OnClick Listener event
 //        holder.itemView.setOnClickListener {

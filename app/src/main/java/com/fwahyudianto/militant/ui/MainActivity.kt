@@ -1,6 +1,7 @@
-package com.fwahyudianto.militant
+package com.fwahyudianto.militant.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.data.model.Player
 import com.fwahyudianto.militant.foundation.adapter.PlayerListAdapter
 
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        installSplashScreen()
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
@@ -59,9 +63,12 @@ class MainActivity : AppCompatActivity() {
             R.id.imenu_list -> {
                 oRvPlayer.layoutManager = LinearLayoutManager(this)
             }
-
             R.id.imenu_grid -> {
                 oRvPlayer.layoutManager = GridLayoutManager(this, 2)
+            }
+            R.id.imenu_about -> {
+                val oIntAbout = Intent(this@MainActivity, AboutActivity::class.java)
+                startActivity(oIntAbout)
             }
         }
 
@@ -71,14 +78,16 @@ class MainActivity : AppCompatActivity() {
     //  Get Player List
     @SuppressLint("Recycle")
     private fun getPlayer(): ArrayList<Player> {
-        val dataName = resources.getStringArray(R.array.arrPlayersName)
-        val dataDescription = resources.getStringArray(R.array.arrPlayersDescription)
-        val dataPhoto = resources.obtainTypedArray(R.array.arrPlayersPhoto)
+        val dtNo = resources.getIntArray(R.array.arrPlayersNo)
+        val dtPhoto = resources.obtainTypedArray(R.array.arrPlayersPhoto)
+        val dtName = resources.getStringArray(R.array.arrPlayersName)
+        val dtFullName = resources.getStringArray(R.array.arrPlayersFullName)
+        val dtDescription = resources.getStringArray(R.array.arrPlayersDescription)
         val lsPlayer = ArrayList<Player>()
 
-        for (i in dataName.indices) {
-            val hero = Player(dataName[i], dataDescription[i], dataPhoto.getResourceId(i, -1))
-            lsPlayer.add(hero)
+        for (i in dtName.indices) {
+            val oPlayer = Player(dtNo[i], dtPhoto.getResourceId(i, -1), dtName[i], dtFullName[i], dtDescription[i])
+            lsPlayer.add(oPlayer)
         }
 
         return lsPlayer
@@ -98,13 +107,20 @@ class MainActivity : AppCompatActivity() {
         //  Add Toast on Item
         lsPlayerAdapter.setOnItemClickCallback(object : PlayerListAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Player) {
-                showSelectedItem(data)
+                getDetailPlayer(data)
             }
         })
     }
 
     //  Show Player selected
     private fun showSelectedItem(oPlayer: Player) {
-        Toast.makeText(this, "You Choose " + oPlayer.name, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "You choose the Player: " + oPlayer.strPlayerName, Toast.LENGTH_SHORT).show()
+    }
+
+    //  Move to Detail Player Page
+    private fun getDetailPlayer(oPlayer: Player) {
+        val oIntPlayerDetail = Intent(this@MainActivity, PlayerDetailActivity::class.java)
+        oIntPlayerDetail.putExtra("PlayerDetail", oPlayer)
+        startActivity(oIntPlayerDetail)
     }
 }
