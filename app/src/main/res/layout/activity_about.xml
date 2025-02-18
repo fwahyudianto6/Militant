@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_sv_player_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AboutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="75sp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/developer_img"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/tv_developer_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:text="@string/developer_name"
+            android:textAlignment="center"
+            android:textSize="15sp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_developer_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="@string/developer_email"
+            android:textAlignment="center"
+            android:textSize="10sp"></TextView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

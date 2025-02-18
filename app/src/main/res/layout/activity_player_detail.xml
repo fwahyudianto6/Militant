@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sv_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.PlayerDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="25sp">
+
+        <!-- Profile -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_photo"
+                android:layout_width="match_parent"
+                android:layout_height="475dp"
+                android:layout_margin="1dp"
+                android:contentDescription="@string/item_grid_strFullname"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/paolo_maldini" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:background="@color/red_transparent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nick_name"
+                    style="@style/TextContent.White"
+                    android:gravity="center"
+                    android:paddingTop="16dp"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    tools:text="Maldini" />
+
+                <TextView
+                    android:id="@+id/tv_number"
+                    style="@style/TextContent.White"
+                    android:gravity="center"
+                    android:textSize="100sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"
+                    tools:text="3" />
+
+                <TextView
+                    android:id="@+id/tv_full_name"
+                    style="@style/TextContent.White"
+                    android:gravity="center"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    tools:text="Paolo Maldini" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+            <ImageView
+                android:id="@+id/img_badge_number"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_margin="1dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/activity_detail_strNumberProfile"
+                android:scaleType="center"
+                android:visibility="gone"
+                tools:src="@drawable/badge_tshirt" />
+
+            <TextView
+                android:id="@+id/tv_number_tshirt_profile"
+                style="@style/TextContent.White"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/activity_detail_lbl_strNumber"
+                android:textSize="25sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_number_tshirt"
+                style="@style/TextContent.White"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="50sp"
+                android:visibility="gone"
+                tools:text="3" />
+        </LinearLayout>
+
+        <!-- Description -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_full_name_description"
+                style="@style/TextContent.White"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="@dimen/vertical_margin"
+                android:gravity="center"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                tools:text="Maldini" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/TextContent.White"
+                android:layout_marginTop="@dimen/vertical_margin"
+                android:layout_marginBottom="@dimen/vertical_margin"
+                android:textSize="20sp"
+                tools:text="Description" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
