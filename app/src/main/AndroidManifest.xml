@@ -13,13 +13,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Militant"
         tools:targetApi="31">
         <activity
-            android:name=".ui.AboutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.SplashActivity"
+            android:theme="@style/Splash.FullScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +26,16 @@
         </activity>
         <activity
             android:name=".ui.PlayerDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.Militant" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Militant" />
+        <activity
+            android:name=".ui.AboutActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Militant" />
     </application>
 
 </manifest>
