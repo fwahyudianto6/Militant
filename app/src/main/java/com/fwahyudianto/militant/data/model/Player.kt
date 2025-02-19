@@ -14,7 +14,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 // Player constructor
 data class Player(
-    val iNoTshirt: Int,
+    val iTshirt: Int,
     val iPlayerPhoto: Int,
     val strPlayerName: String,
     val strPlayerFullName: String,

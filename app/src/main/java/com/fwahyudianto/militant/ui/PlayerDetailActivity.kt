@@ -1,47 +1,46 @@
 package com.fwahyudianto.militant.ui
 
+//  Import Library
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.data.model.Player
+import com.fwahyudianto.militant.databinding.ActivityPlayerDetailBinding
 
 /**
  * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
  * https://www.fwahyudianto.id
  * ® Wahyudianto, Fajar
  * Email 	: me@fwahyudianto.id
+ *
+ * 	Date			User				Note
+ *  -------------------------------------------------------------------------------------------------------------------------
+ *  2025-02-19      fwahyudianto        Enhance: implement View Binding
+ *  End Revised
  */
 
 class PlayerDetailActivity : AppCompatActivity() {
+    //  Initialize
+    private lateinit var oBinding: ActivityPlayerDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_player_detail)
+        oBinding = ActivityPlayerDetailBinding.inflate(layoutInflater)
+        setContentView(oBinding.root)
 
-        val data = intent.getParcelableExtra<Player>("PlayerDetail")
-        Log.d("Player's Detail Data", data?.iNoTshirt.toString())
+        val dtPlayer = intent.getParcelableExtra<Player>("PLAYER_DETAIL")
 
-        val imgPhoto: ImageView = findViewById(R.id.img_photo)
-        val tvName: TextView = findViewById(R.id.tv_nick_name)
-        val tvNo: TextView = findViewById(R.id.tv_number)
-        val tvTshirt: TextView = findViewById(R.id.tv_number_tshirt)
-        val tvFullName: TextView = findViewById(R.id.tv_full_name)
-        val tvFullNameDescription: TextView = findViewById(R.id.tv_full_name_description)
-        val tvDescription: TextView = findViewById(R.id.tv_description)
-
-        imgPhoto.setImageResource(data?.iPlayerPhoto!!)
-        tvNo.text = data?.iNoTshirt.toString()
-        tvTshirt.text = data?.iNoTshirt.toString()
-        tvName.text = data?.strPlayerName.toString()
-        tvFullName.text = data?.strPlayerFullName.toString()
-        tvFullNameDescription.text = data?.strPlayerName.toString()
-        tvDescription.text = data?.strPlayerDescription.toString()
+        oBinding.imgPhoto.setImageResource(dtPlayer?.iPlayerPhoto!!)
+        oBinding.tvNickName.text = dtPlayer?.strPlayerName.toString()
+        oBinding.tvNumber.text = dtPlayer?.iTshirt.toString()
+        oBinding.tvNumberTshirt.text = dtPlayer?.iTshirt.toString()
+        oBinding.tvFullName.text = dtPlayer?.strPlayerFullName.toString()
+        oBinding.tvFullNameDescription.text = dtPlayer?.strPlayerName.toString()
+        oBinding.tvDescription.text = dtPlayer?.strPlayerDescription.toString()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.sv_detail)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

@@ -29,7 +29,7 @@
     <string name="activity_detail_lbl_strLeagueGoals">League Goals</string>
 
     <!-- Player's Tshirt No -->
-    <string-array name="arrPlayersNo">
+    <integer-array name="arrPlayersNo">
         <item>12</item>
         <item>13</item>
         <item>3</item>
@@ -41,7 +41,7 @@
         <item>10</item>
         <item>7</item>
         <item>9</item>
-    </string-array>
+    </integer-array>
 
     <!-- Player's Full Name -->
     <string-array name="arrPlayersFullName">

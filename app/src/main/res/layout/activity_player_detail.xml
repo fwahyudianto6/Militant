@@ -9,8 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="25sp">
+        android:orientation="vertical">
 
         <!-- Profile -->
         <FrameLayout
@@ -66,9 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:orientation="vertical"
-            android:visibility="gone"
-            tools:visibility="gone">
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/img_badge_number"
@@ -78,8 +75,7 @@
                 android:layout_marginTop="32dp"
                 android:contentDescription="@string/activity_detail_strNumberProfile"
                 android:scaleType="center"
-                android:visibility="gone"
-                tools:src="@drawable/badge_tshirt" />
+                android:src="@drawable/badge_tshirt" />
 
             <TextView
                 android:id="@+id/tv_number_tshirt_profile"
@@ -88,8 +84,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/activity_detail_lbl_strNumber"
-                android:textSize="25sp"
-                android:visibility="gone" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tv_number_tshirt"
@@ -98,7 +93,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="50sp"
-                android:visibility="gone"
                 tools:text="3" />
         </LinearLayout>
 

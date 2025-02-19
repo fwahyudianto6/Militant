@@ -1,9 +1,11 @@
 package com.fwahyudianto.militant.ui
 
+//  Import Library
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.data.model.Player
+import com.fwahyudianto.militant.databinding.ActivityMainBinding
 import com.fwahyudianto.militant.foundation.adapter.PlayerListAdapter
 
 /**
@@ -23,31 +26,53 @@ import com.fwahyudianto.militant.foundation.adapter.PlayerListAdapter
  * https://www.fwahyudianto.id
  * ® Wahyudianto, Fajar
  * Email 	: me@fwahyudianto.id
+ *
+ * 	Date			User				Note
+ *  -------------------------------------------------------------------------------------------------------------------------
+ *  2025-02-19      fwahyudianto        Enhance: implement View Binding
+ *  End Revised
  */
 
 class MainActivity : AppCompatActivity() {
     //  Initialize
+    companion object {
+        private val M_STATE_LIST = "state_list"
+    }
     private lateinit var oRvPlayer: RecyclerView
     private val arrPlayerList = ArrayList<Player>()
+    private lateinit var oBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        installSplashScreen()
+        // installSplashScreen()
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        oBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(oBinding.root)
 
         oRvPlayer = findViewById(R.id.rv_players)
         oRvPlayer.setHasFixedSize(true)
 
-        arrPlayerList.addAll(getPlayer())
-        showRecyclerList()
+        if (savedInstanceState == null) {
+            arrPlayerList.addAll(getPlayer())
+            PlayerList()
+        } else {
+            arrPlayerList.addAll(savedInstanceState.getParcelableArrayList<Player>(M_STATE_LIST)!!)
+            Log.d("DEV-savedInstanceState", "EXIST")
+            PlayerList()
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    //  Save State
+    override fun onSaveInstanceState(oBundle: Bundle) {
+        super.onSaveInstanceState(oBundle)
+        oBundle.putParcelableArrayList(M_STATE_LIST, arrPlayerList)
     }
 
     //  Initial Option Menu
@@ -94,7 +119,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Show Player List
-    private fun showRecyclerList() {
+    private fun PlayerList() {
         if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             oRvPlayer.layoutManager = GridLayoutManager(this, 2)
         } else {
@@ -120,7 +145,7 @@ class MainActivity : AppCompatActivity() {
     //  Move to Detail Player Page
     private fun getDetailPlayer(oPlayer: Player) {
         val oIntPlayerDetail = Intent(this@MainActivity, PlayerDetailActivity::class.java)
-        oIntPlayerDetail.putExtra("PlayerDetail", oPlayer)
+        oIntPlayerDetail.putExtra("PLAYER_DETAIL", oPlayer)
         startActivity(oIntPlayerDetail)
     }
 }
