@@ -1,6 +1,7 @@
 package com.fwahyudianto.militant.ui
 
 //  Import Library
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,9 @@ import com.fwahyudianto.militant.databinding.ActivityPlayerDetailBinding
  *
  * 	Date			User				Note
  *  -------------------------------------------------------------------------------------------------------------------------
- *  2025-02-19      fwahyudianto        Enhance: implement View Binding
+ *  2025-02-19      fwahyudianto        Enhance:
+ *                                      -   implement View Binding
+ *                                      -   implement Action Share
  *  End Revised
  */
 
@@ -42,10 +45,26 @@ class PlayerDetailActivity : AppCompatActivity() {
         oBinding.tvFullNameDescription.text = dtPlayer?.strPlayerName.toString()
         oBinding.tvDescription.text = dtPlayer?.strPlayerDescription.toString()
 
+        val detailText =
+            "⚡ " + dtPlayer?.strPlayerName.toString() + " - Bintang AC Milan ❤\uFE0F\uD83D\uDDA4! ⚡\n #ACMilan #Rossoneri\""
+        oBinding.btnShare.setOnClickListener {
+            //  Toast.makeText(this, "Share: " + dtPlayer?.strPlayerName.toString(), Toast.LENGTH_SHORT).show()
+            shareContent(detailText)
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.sv_detail)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    //  Share to External
+    private fun shareContent(content: String) {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, content)
+        }
+        startActivity(Intent.createChooser(intent, "Bagikan melalui"))
     }
 }

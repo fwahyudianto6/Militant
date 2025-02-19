@@ -27,6 +27,8 @@
     <string name="activity_detail_lbl_strLeagueMatches">League Matches</string>
     <string name="activity_detail_strLeagueGoalsDescription">AC Milan\'s Player League Goals</string>
     <string name="activity_detail_lbl_strLeagueGoals">League Goals</string>
+    <string name="btn_favorite_strFavorite">Favorite</string>"
+    <string name="btn_share_strShare">Share</string>
 
     <!-- Player's Tshirt No -->
     <integer-array name="arrPlayersNo">

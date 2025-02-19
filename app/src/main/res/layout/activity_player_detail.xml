@@ -41,7 +41,6 @@
                     android:textSize="40sp"
                     android:textStyle="bold"
                     tools:text="Maldini" />
-
                 <TextView
                     android:id="@+id/tv_number"
                     style="@style/TextContent.White"
@@ -50,7 +49,6 @@
                     android:textStyle="bold"
                     android:visibility="invisible"
                     tools:text="3" />
-
                 <TextView
                     android:id="@+id/tv_full_name"
                     style="@style/TextContent.White"
@@ -58,6 +56,15 @@
                     android:textSize="30sp"
                     android:textStyle="bold"
                     tools:text="Paolo Maldini" />
+
+                <Button
+                    android:id="@+id/btn_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/btn_share_strShare"></Button>
+
             </LinearLayout>
         </FrameLayout>
 
