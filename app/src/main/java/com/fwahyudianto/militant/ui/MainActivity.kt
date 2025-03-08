@@ -33,10 +33,11 @@ import com.fwahyudianto.militant.foundation.adapter.PlayerListAdapter
  *  End Revised
  */
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     //  Initialize
     companion object {
-        private val M_STATE_LIST = "state_list"
+        private const val M_STATE_LIST = "state_list"
     }
     private lateinit var oRvPlayer: RecyclerView
     private val arrPlayerList = ArrayList<Player>()
@@ -55,11 +56,11 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             arrPlayerList.addAll(getPlayer())
-            PlayerList()
+            playerList()
         } else {
-            arrPlayerList.addAll(savedInstanceState.getParcelableArrayList<Player>(M_STATE_LIST)!!)
+            arrPlayerList.addAll(savedInstanceState.getParcelableArrayList(M_STATE_LIST)!!)
             Log.d("DEV-savedInstanceState", "EXIST")
-            PlayerList()
+            playerList()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -119,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Show Player List
-    private fun PlayerList() {
+    private fun playerList() {
         if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             oRvPlayer.layoutManager = GridLayoutManager(this, 2)
         } else {
@@ -138,6 +139,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Show Player selected
+    @Deprecated(
+        "This function will be removed soon",
+        ReplaceWith("getDetailPlayer()"),
+        level = DeprecationLevel.WARNING
+    )
     private fun showSelectedItem(oPlayer: Player) {
         Toast.makeText(this, "You choose the Player: " + oPlayer.strPlayerName, Toast.LENGTH_SHORT).show()
     }

@@ -48,9 +48,17 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.core.splashscreen)
 
+    // Implement AndroidX
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
     // Kotlin DSL (new version)
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment.ktx)
 
     //  Unit Testing
     testImplementation(libs.junit)

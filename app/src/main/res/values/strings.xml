@@ -7,7 +7,7 @@
     <string name="players_position">DMF</string>
     <string name="description">Description</string>
     <string name="developer_photo">https://avatars.githubusercontent.com/u/12522356?v=4</string>
-    <string name="developer_name">Fajar Wahyudianto</string>
+    <string name="developer_name">Wahyudianto, Fajar</string>
     <string name="developer_email">fwahyudi06@gmail.com</string>
 
     <string name="item_grid_strFullname">AC Milan\'s Player Full Name</string>
@@ -121,4 +121,19 @@
         <item>@drawable/shevchenko</item>
         <item>@drawable/inzaghi</item>
     </integer-array>
+
+    <!-- Navbar Header Home-->
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_username">Wahyudianto, Fajar</string>
+    <string name="nav_header_email">fwahyudi06@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <!-- Navbar Menu List-->
+    <string name="menu_home">Home</string>
+    <string name="menu_club">Club</string>
+    <string name="menu_news">News</string>
+    <string name="menu_events">Events</string>
+    <string name="menu_teams">Teams</string>
 </resources>

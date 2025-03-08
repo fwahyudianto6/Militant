@@ -5,6 +5,16 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="Base.Theme.Militant.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--    ThemeOverlay.AppCompat.Dark.ActionBar-->
+    <style name="Base.Theme.Militant.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Base.Theme.Militant.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <!--    <style name="Theme.Militant.Splash" parent="Base.Theme.Militant">-->
     <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
     <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/mi_logo</item>-->

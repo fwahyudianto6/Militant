@@ -16,13 +16,18 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.SplashActivity"
-            android:theme="@style/Splash.FullScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Splash.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.HomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Base.Theme.Militant.NoActionBar">
         </activity>
         <activity
             android:name=".ui.PlayerDetailActivity"
