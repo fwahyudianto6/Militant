@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class EventsViewModel : ViewModel() {
     private val mEventsText = MutableLiveData<String>().apply {
-        value = "This feature is currently under development. Stay tuned for updates!"
+        value = "This feature [Event] is currently under development. Stay tuned for updates!"
     }
 
     val dtEvents: LiveData<String> = mEventsText

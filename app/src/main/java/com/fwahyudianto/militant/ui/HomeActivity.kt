@@ -57,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_home, R.id.nav_club,
                 R.id.nav_news, R.id.nav_events,
-                R.id.nav_teams
+                R.id.nav_teams,
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

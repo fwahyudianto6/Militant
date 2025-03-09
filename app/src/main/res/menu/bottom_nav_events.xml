@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/imenu_upcoming_events"
+        android:title="@string/menu_upcoming_events" />
+    <item
+        android:id="@+id/imenu_finished_events"
+        android:title="@string/menu_finished_events" />
+</menu>

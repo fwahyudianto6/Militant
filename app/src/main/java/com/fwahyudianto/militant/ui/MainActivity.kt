@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val M_STATE_LIST = "state_list"
     }
+
     private lateinit var oRvPlayer: RecyclerView
     private val arrPlayerList = ArrayList<Player>()
     private lateinit var oBinding: ActivityMainBinding
@@ -89,9 +90,11 @@ class MainActivity : AppCompatActivity() {
             R.id.imenu_list -> {
                 oRvPlayer.layoutManager = LinearLayoutManager(this)
             }
+
             R.id.imenu_grid -> {
                 oRvPlayer.layoutManager = GridLayoutManager(this, 2)
             }
+
             R.id.imenu_about -> {
                 val oIntAbout = Intent(this@MainActivity, AboutActivity::class.java)
                 startActivity(oIntAbout)
@@ -112,7 +115,13 @@ class MainActivity : AppCompatActivity() {
         val lsPlayer = ArrayList<Player>()
 
         for (i in dtName.indices) {
-            val oPlayer = Player(dtNo[i], dtPhoto.getResourceId(i, -1), dtName[i], dtFullName[i], dtDescription[i])
+            val oPlayer = Player(
+                dtNo[i],
+                dtPhoto.getResourceId(i, -1),
+                dtName[i],
+                dtFullName[i],
+                dtDescription[i]
+            )
             lsPlayer.add(oPlayer)
         }
 
@@ -145,7 +154,8 @@ class MainActivity : AppCompatActivity() {
         level = DeprecationLevel.WARNING
     )
     private fun showSelectedItem(oPlayer: Player) {
-        Toast.makeText(this, "You choose the Player: " + oPlayer.strPlayerName, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "You choose the Player: " + oPlayer.strPlayerName, Toast.LENGTH_SHORT)
+            .show()
     }
 
     //  Move to Detail Player Page

@@ -136,4 +136,7 @@
     <string name="menu_news">News</string>
     <string name="menu_events">Events</string>
     <string name="menu_teams">Teams</string>
+    <!-- Bottom Navigation Events List-->
+    <string name="menu_upcoming_events">Upcoming</string>
+    <string name="menu_finished_events">Finished</string>
 </resources>
