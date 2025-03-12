@@ -31,4 +31,16 @@
         android:name="com.fwahyudianto.militant.ui.teams.TeamsFragment"
         android:label="@string/menu_teams"
         tools:layout="@layout/fragment_teams" />
+
+    <!--    &lt;!&ndash; Events Navigation &ndash;&gt;-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/nav_upcoming_events"-->
+    <!--        android:name="com.fwahyudianto.militant.ui.events.UpcomingEventsFragment"-->
+    <!--        android:label="@string/menu_upcoming_events"-->
+    <!--        tools:layout="@layout/fragment_upcoming_events" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/nav_finished_events"-->
+    <!--        android:name="com.fwahyudianto.militant.ui.events.FinishedEventsFragment"-->
+    <!--        android:label="@string/menu_finished_events"-->
+    <!--        tools:layout="@layout/fragment_finished_events" />-->
 </navigation>

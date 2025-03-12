@@ -16,6 +16,7 @@
             android:title="@string/menu_news" />
         <item
             android:id="@+id/nav_events"
+            android:visible="false"
             android:title="@string/menu_events" />
         <item
             android:id="@+id/nav_teams"

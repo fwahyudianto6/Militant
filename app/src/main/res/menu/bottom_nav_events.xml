@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/imenu_home"
+        android:icon="@drawable/ic_home_work"
+        android:title="@string/menu_home" />
+    <item
         android:id="@+id/imenu_upcoming_events"
+        android:icon="@drawable/ic_event_available"
         android:title="@string/menu_upcoming_events" />
     <item
         android:id="@+id/imenu_finished_events"
+        android:icon="@drawable/ic_event_busy"
         android:title="@string/menu_finished_events" />
+    <item
+        android:id="@+id/imenu_profile"
+        android:icon="@drawable/ic_account_circle"
+        android:title="@string/menu_profile" />
 </menu>
