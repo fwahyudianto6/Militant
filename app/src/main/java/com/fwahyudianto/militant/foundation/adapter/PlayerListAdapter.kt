@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fwahyudianto.militant.data.model.Player
 import com.fwahyudianto.militant.databinding.ItemHallOfFameListBinding
+import java.util.Locale
 
 /**
  * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
@@ -33,10 +34,10 @@ class PlayerListAdapter(private val oPlayerList: ArrayList<Player>) :
         RecyclerView.ViewHolder(binding.root)
 
     //  Implement member RecyclerView.Adapter
-    override fun onCreateViewHolder(p_oViewGroup: ViewGroup, p_iViewType: Int): ListViewHolder {
+    override fun onCreateViewHolder(pViewGroup: ViewGroup, pViewType: Int): ListViewHolder {
         val bindingView = ItemHallOfFameListBinding.inflate(
-            LayoutInflater.from(p_oViewGroup.context),
-            p_oViewGroup,
+            LayoutInflater.from(pViewGroup.context),
+            pViewGroup,
             false
         )
 
@@ -48,13 +49,13 @@ class PlayerListAdapter(private val oPlayerList: ArrayList<Player>) :
 
     //  Implement member RecyclerView.Adapter
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (no, photo, name, full_name, description) = oPlayerList[position]
+        val (no, photo, name, fullName, description) = oPlayerList[position]
         val maxLength = 85
 
         holder.binding.imgItemPhoto.setImageResource(photo)
-        holder.binding.tvItemNo.text = no.toString()
+        holder.binding.tvItemNo.text = String.format(Locale.getDefault(), "%d", no)
         holder.binding.tvItemName.text = name
-        holder.binding.tvItemFullname.text = full_name
+        holder.binding.tvItemFullname.text = fullName
         holder.binding.tvItemDescription.text = if (description.length > maxLength) {
             description.substring(0, maxLength) + " ..."
         } else {

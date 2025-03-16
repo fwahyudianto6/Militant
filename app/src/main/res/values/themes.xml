@@ -12,7 +12,6 @@
 
     <!--    ThemeOverlay.AppCompat.Dark.ActionBar-->
     <style name="Base.Theme.Militant.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Base.Theme.Militant.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--    <style name="Theme.Militant.Splash" parent="Base.Theme.Militant">-->

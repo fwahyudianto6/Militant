@@ -13,6 +13,7 @@
             android:title="@string/menu_club" />
         <item
             android:id="@+id/nav_news"
+            android:visible="false"
             android:title="@string/menu_news" />
         <item
             android:id="@+id/nav_events"
@@ -20,6 +21,7 @@
             android:title="@string/menu_events" />
         <item
             android:id="@+id/nav_teams"
+            android:visible="false"
             android:title="@string/menu_teams" />
     </group>
 </menu>

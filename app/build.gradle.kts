@@ -13,7 +13,7 @@ android {
         minSdk = 23
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0.3"
+        versionName = "1.0.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,10 +55,13 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     // Kotlin DSL (new version)
-    implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.circleimageview)
+    implementation(libs.glide)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+
+    //  Image Slider
+    implementation(libs.imageslideshow)
 
     //  Unit Testing
     testImplementation(libs.junit)

@@ -8,14 +8,72 @@
 
     <TextView
         android:id="@+id/tv_home"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/milan_typerev_bold"
+        android:text="@string/navbar_home_title"
+        android:textAlignment="textStart"
+        android:textColor="#D50000"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_upcoming_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/milan_typerev"
+        android:text="@string/navbar_upcoming_events_home_subtitle"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tv_home"
+        app:layout_constraintTop_toBottomOf="@id/tv_home" />
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/imgs_banners"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_margin="16dp"
+        app:iss_auto_cycle="true"
+        app:iss_corner_radius="30"
+        app:iss_delay="0"
+        app:iss_error_image="@android:color/darker_gray"
+        app:iss_period="5000"
+        app:iss_placeholder="@android:color/darker_gray"
+        app:iss_selected_dot="@drawable/default_selected_dot"
+        app:iss_unselected_dot="@drawable/default_unselected_dot"
+        app:layout_constraintStart_toStartOf="@id/tv_upcoming_home"
+        app:layout_constraintTop_toBottomOf="@id/tv_upcoming_home"
+        tools:ignore="MissingConstraints"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/tv_finished_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/milan_typerev"
+        android:text="@string/navbar_finished_events_home_subtitle"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tv_home"
+        app:layout_constraintTop_toBottomOf="@id/imgs_banners"
+        tools:text="@string/navbar_finished_events_home_subtitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_events"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_finished_home"
+        app:layout_constraintTop_toBottomOf="@id/tv_finished_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

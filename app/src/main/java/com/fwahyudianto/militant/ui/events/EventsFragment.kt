@@ -1,13 +1,24 @@
 package com.fwahyudianto.militant.ui.events
 
+//  Import Library
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import com.fwahyudianto.militant.databinding.FragmentEventsBinding
+
+/**
+ * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
+ * https://www.fwahyudianto.id
+ * ® Wahyudianto, Fajar
+ * Email 	: me@fwahyudianto.id
+ *
+ * 	Date			User				Note
+ *  -------------------------------------------------------------------------------------------------------------------------
+ *  End Revised
+ */
 
 class EventsFragment : Fragment() {
     companion object {
@@ -18,7 +29,6 @@ class EventsFragment : Fragment() {
     private val mEventsViewModel: EventsViewModel by viewModels()
     private var mEventsBinding: FragmentEventsBinding? = null
     private val oBinding get() = mEventsBinding!!
-    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

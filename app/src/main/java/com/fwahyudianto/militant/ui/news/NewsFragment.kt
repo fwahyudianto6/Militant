@@ -1,5 +1,6 @@
 package com.fwahyudianto.militant.ui.news
 
+//  Import Library
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fwahyudianto.militant.databinding.FragmentNewsBinding
+
+/**
+ * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
+ * https://www.fwahyudianto.id
+ * ® Wahyudianto, Fajar
+ * Email 	: me@fwahyudianto.id
+ *
+ * 	Date			User				Note
+ *  -------------------------------------------------------------------------------------------------------------------------
+ *  End Revised
+ */
 
 class NewsFragment : Fragment() {
     companion object {
