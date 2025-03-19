@@ -2,19 +2,21 @@ package com.fwahyudianto.militant.ui.home
 
 //  Import Library
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.data.model.Event
+import com.fwahyudianto.militant.data.response.ListEventsItem
 import com.fwahyudianto.militant.databinding.FragmentHomeBinding
-import com.fwahyudianto.militant.foundation.adapter.EventListAdapter
+import com.fwahyudianto.militant.foundation.adapter.EventListApiAdapter
 
 /**
  * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
@@ -30,9 +32,11 @@ import com.fwahyudianto.militant.foundation.adapter.EventListAdapter
 class HomeFragment : Fragment() {
     private lateinit var mRecyleViewEvent: RecyclerView
     private val mArrEventsList = ArrayList<Event>()
+    private var mEvent = listOf<ListEventsItem>()
 
     private var mHomeBinding: FragmentHomeBinding? = null
     private val oBinding get() = mHomeBinding!!
+    private val mHomeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,13 +49,16 @@ class HomeFragment : Fragment() {
         mRecyleViewEvent.setHasFixedSize(true)
 
         if (savedInstanceState == null) {
-            mArrEventsList.clear()
-            mArrEventsList.addAll(getEvent())
-
             mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
 
-            val lsEventAdapter = EventListAdapter(mArrEventsList)
-            mRecyleViewEvent.adapter = lsEventAdapter
+            mHomeViewModel.mEvent.observe(viewLifecycleOwner, { event ->
+                mEvent = event
+
+                getEvents(mEvent)
+            })
+            mHomeViewModel.isLoading.observe(viewLifecycleOwner, {
+                showLoading(it)
+            })
         }
 
         return oBinding.root
@@ -59,11 +66,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            oBinding.tvHome.text = it
-        }
 
         //  Image Slideshow
         val imgList = ArrayList<SlideModel>() // Create image list
@@ -88,6 +90,7 @@ class HomeFragment : Fragment() {
     }
 
     //  Get Events
+    @Suppress("Unused")
     private fun getEvent(): ArrayList<Event> {
         val dtImage = resources.getStringArray(R.array.arrEventsImage)
         val dtCategory = resources.getStringArray(R.array.arrEventsCategory)
@@ -101,5 +104,32 @@ class HomeFragment : Fragment() {
         }
 
         return lsEvents
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            mHomeBinding!!.pgrbarHome.visibility = View.VISIBLE
+            mHomeBinding!!.rvEvents.alpha = 0.0F
+        } else {
+            mHomeBinding!!.pgrbarHome.visibility = View.GONE
+            mHomeBinding!!.rvEvents.alpha = 1F
+        }
+    }
+
+    private fun getEvents(event: List<ListEventsItem>) {
+        val listEventAdapter = EventListApiAdapter(event)
+        mRecyleViewEvent.adapter = listEventAdapter
+
+        listEventAdapter.setOnItemClickCallback(object : EventListApiAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ListEventsItem) {
+                sendSelectedEvent(data)
+            }
+        })
+    }
+
+    @Suppress("Unused")
+    private fun sendSelectedEvent(event: ListEventsItem) {
+        //  ToDo: Send Data to Detail Activity
+        Log.d("DEV-sendSelectedEvent", event.id.toString())
     }
 }

@@ -5,10 +5,10 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 /**
- * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
- * https://www.fwahyudianto.id
- * ® Wahyudianto, Fajar
- * Email 	: me@fwahyudianto.id
+ *  This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
+ *  https://www.fwahyudianto.id
+ *  ® Wahyudianto, Fajar
+ *  Email 	: me@fwahyudianto.id
  *
  * 	Date			User				Note
  *  -------------------------------------------------------------------------------------------------------------------------
