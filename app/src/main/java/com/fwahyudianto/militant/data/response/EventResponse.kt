@@ -1,6 +1,8 @@
 package com.fwahyudianto.militant.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /**
  *  This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
@@ -26,6 +28,7 @@ data class EventResponse(
     val message: String
 )
 
+@Parcelize
 data class ListEventsItem(
 
     @field:SerializedName("summary")
@@ -69,4 +72,4 @@ data class ListEventsItem(
 
     @field:SerializedName("category")
     val category: String
-)
+) : Parcelable

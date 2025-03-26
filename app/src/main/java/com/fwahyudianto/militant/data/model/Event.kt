@@ -23,3 +23,12 @@ data class Event(
     val strEventName: String,
     val strEventSummary: String,
 ) : Parcelable
+
+@Parcelize
+data class EventDetail(
+    val strEventImage: String,
+    val strEventCategory: String,
+    val strEventName: String,
+    val strEventSummary: String,
+    val strEventDetail: String,
+) : Parcelable

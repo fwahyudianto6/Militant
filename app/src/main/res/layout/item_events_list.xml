@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="finishedEvents"
             type="com.fwahyudianto.militant.data.response.ListEventsItem" />

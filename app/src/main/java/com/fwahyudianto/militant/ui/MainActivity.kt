@@ -72,9 +72,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Save State
-    override fun onSaveInstanceState(oBundle: Bundle) {
-        super.onSaveInstanceState(oBundle)
-        oBundle.putParcelableArrayList(M_STATE_LIST, arrPlayerList)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(M_STATE_LIST, arrPlayerList)
     }
 
     //  Initial Option Menu

@@ -45,7 +45,7 @@ class HomeActivity : AppCompatActivity() {
 
         mHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(mHomeBinding.root)
-        setSupportActionBar(mHomeBinding.appBarHome.toolbar)
+        setSupportActionBar(mHomeBinding.appBarHome.homeToolbar)
 
         mHomeBinding.appBarHome.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

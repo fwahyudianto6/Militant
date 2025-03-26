@@ -1,8 +1,8 @@
 package com.fwahyudianto.militant.ui.home
 
 //  Import Library
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +17,7 @@ import com.fwahyudianto.militant.data.model.Event
 import com.fwahyudianto.militant.data.response.ListEventsItem
 import com.fwahyudianto.militant.databinding.FragmentHomeBinding
 import com.fwahyudianto.militant.foundation.adapter.EventListApiAdapter
+import com.fwahyudianto.militant.ui.EventDetailActivity
 
 /**
  * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
@@ -31,7 +32,8 @@ import com.fwahyudianto.militant.foundation.adapter.EventListApiAdapter
 
 class HomeFragment : Fragment() {
     private lateinit var mRecyleViewEvent: RecyclerView
-    private val mArrEventsList = ArrayList<Event>()
+
+    //  private val mArrEventsList = ArrayList<Event>()
     private var mEvent = listOf<ListEventsItem>()
 
     private var mHomeBinding: FragmentHomeBinding? = null
@@ -51,14 +53,14 @@ class HomeFragment : Fragment() {
         if (savedInstanceState == null) {
             mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
 
-            mHomeViewModel.mEvent.observe(viewLifecycleOwner, { event ->
+            mHomeViewModel.mEvent.observe(viewLifecycleOwner) { event ->
                 mEvent = event
 
                 getEvents(mEvent)
-            })
-            mHomeViewModel.isLoading.observe(viewLifecycleOwner, {
+            }
+            mHomeViewModel.isLoading.observe(viewLifecycleOwner) {
                 showLoading(it)
-            })
+            }
         }
 
         return oBinding.root
@@ -129,7 +131,10 @@ class HomeFragment : Fragment() {
 
     @Suppress("Unused")
     private fun sendSelectedEvent(event: ListEventsItem) {
-        //  ToDo: Send Data to Detail Activity
-        Log.d("DEV-sendSelectedEvent", event.id.toString())
+//        Log.d("DEV-sendSelectedEvent", event.toString())
+        val oIntEventDetail = Intent(requireContext(), EventDetailActivity::class.java)
+
+        oIntEventDetail.putExtra(EventDetailActivity.EVENT_DETAIL, event)
+        startActivity(oIntEventDetail)
     }
 }
