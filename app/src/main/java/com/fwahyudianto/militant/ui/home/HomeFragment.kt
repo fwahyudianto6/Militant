@@ -6,12 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.data.model.Event
 import com.fwahyudianto.militant.data.response.ListEventsItem
@@ -48,12 +52,6 @@ class HomeFragment : Fragment() {
         mRecyleViewEvent = oBinding.homeEventsRvfinished
         mRecyleViewEvent.setHasFixedSize(true)
 
-        return oBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         if (savedInstanceState == null) {
             mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
 
@@ -70,10 +68,25 @@ class HomeFragment : Fragment() {
                 mEvent = lsEvents
                 getFinishedEvents(mEvent)
             }
-            mHomeViewModel.isLoading.observe(viewLifecycleOwner) {
-                showLoading(it)
-            }
+
+            showLoading(
+                mHomeViewModel.isLoadingUpcoming,
+                mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming,
+                mHomeBinding!!.root, mHomeBinding!!.homeEventsTvsubtitle2,
+                mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming
+            )
+
+            showLoading(
+                mHomeViewModel.isLoadingFinished,
+                mHomeBinding!!.homeRvShimmer, mHomeBinding!!.homeEventsRvfinished
+            )
         }
+
+        return oBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         mHomeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             Snackbar.make(oBinding.root, error, Snackbar.LENGTH_LONG).show()
@@ -102,13 +115,51 @@ class HomeFragment : Fragment() {
         return lsEvents
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            mHomeBinding!!.homePrgbar.visibility = View.VISIBLE
-            mHomeBinding!!.homeEventsRvfinished.alpha = 0.0F
-        } else {
-            mHomeBinding!!.homePrgbar.visibility = View.GONE
-            mHomeBinding!!.homeEventsRvfinished.alpha = 1F
+    private fun showLoading(
+        isLoading: LiveData<Boolean>,
+        shimmerView: ShimmerFrameLayout,
+        contentView: View,
+        targetConstraintLayout: ConstraintLayout? = null,
+        anchorView: View? = null,
+        topAnchorLoading: View? = null,
+        topAnchorLoaded: View? = null
+    ) {
+        isLoading.observe(viewLifecycleOwner) { loading ->
+            if (loading) {
+                shimmerView.visibility = View.VISIBLE
+                shimmerView.startShimmer()
+                contentView.visibility = View.GONE
+
+                if (targetConstraintLayout != null && anchorView != null && topAnchorLoading != null) {
+                    ConstraintSet().apply {
+                        clone(targetConstraintLayout)
+                        connect(
+                            anchorView.id,
+                            ConstraintSet.TOP,
+                            topAnchorLoading.id,
+                            ConstraintSet.BOTTOM
+                        )
+                        applyTo(targetConstraintLayout)
+                    }
+                }
+            } else {
+                shimmerView.stopShimmer()
+                shimmerView.visibility = View.GONE
+                contentView.visibility = View.VISIBLE
+
+                if (targetConstraintLayout != null && anchorView != null && topAnchorLoaded != null) {
+                    ConstraintSet().apply {
+                        clone(targetConstraintLayout)
+                        connect(
+                            anchorView.id,
+                            ConstraintSet.TOP,
+                            topAnchorLoaded.id,
+                            ConstraintSet.BOTTOM
+                        )
+                        applyTo(targetConstraintLayout)
+                    }
+                }
+            }
         }
     }
 

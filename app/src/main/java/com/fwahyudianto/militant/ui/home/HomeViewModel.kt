@@ -22,15 +22,17 @@ class HomeViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "Militan Events"
     }
-    private val mFinishedEventsColl = MutableLiveData<List<ListEventsItem>>()
     private val mUpcomingEventsColl = MutableLiveData<List<ListEventsItem>>()
-    private val mIsLoading = MutableLiveData<Boolean>()
+    private val mFinishedEventsColl = MutableLiveData<List<ListEventsItem>>()
+    private val mIsLoadingUpcoming = MutableLiveData<Boolean>()
+    private val mIsLoadingFinished = MutableLiveData<Boolean>()
     private val mErrorMessage = MutableLiveData<String>()
 
     val text: LiveData<String> = _text
-    val mFinishedEvents: LiveData<List<ListEventsItem>> = mFinishedEventsColl
     val mUpcomingEvents: LiveData<List<ListEventsItem>> = mUpcomingEventsColl
-    val isLoading: LiveData<Boolean> = mIsLoading
+    val mFinishedEvents: LiveData<List<ListEventsItem>> = mFinishedEventsColl
+    val isLoadingUpcoming: LiveData<Boolean> = mIsLoadingUpcoming
+    val isLoadingFinished: LiveData<Boolean> = mIsLoadingFinished
     val errorMessage: LiveData<String> = mErrorMessage
 
     init {
@@ -39,7 +41,7 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun getFinishedEvents() {
-        mIsLoading.value = true
+        mIsLoadingFinished.value = true
 
         val oFinishedEvents = ApiConfig.getApiService().getListByParam(0, null, 5)
         oFinishedEvents.enqueue(object : retrofit2.Callback<EventResponse> {
@@ -47,7 +49,7 @@ class HomeViewModel : ViewModel() {
                 call: Call<EventResponse>,
                 response: Response<EventResponse>
             ) {
-                mIsLoading.value = false
+                mIsLoadingFinished.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
@@ -60,7 +62,7 @@ class HomeViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
-                mIsLoading.value = false
+                mIsLoadingFinished.value = false
 //                Log.e(TAG, "onFailure-FinishedEvents: ${t.message}")
                 handleFailure("FinishedEvents", t)
             }
@@ -68,15 +70,15 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun getUpcomingEvents() {
-        mIsLoading.value = true
+        mIsLoadingUpcoming.value = true
 
-        val oUpcomingEvents = ApiConfig.getApiService().getListByParam(1, null, 2)
+        val oUpcomingEvents = ApiConfig.getApiService().getListByParam(1, null, 5)
         oUpcomingEvents.enqueue(object : retrofit2.Callback<EventResponse> {
             override fun onResponse(
                 call: Call<EventResponse>,
                 response: Response<EventResponse>
             ) {
-                mIsLoading.value = false
+                mIsLoadingUpcoming.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
@@ -89,7 +91,7 @@ class HomeViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
-                mIsLoading.value = false
+                mIsLoadingUpcoming.value = false
                 handleFailure("UpcomingEvents", t)
             }
         })

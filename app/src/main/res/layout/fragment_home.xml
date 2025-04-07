@@ -33,6 +33,21 @@
         app:layout_constraintStart_toStartOf="@id/home.events.tvtitle"
         app:layout_constraintTop_toBottomOf="@id/home.events.tvtitle" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/home.imgs.shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home.events.tvsubtitle1">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/skeleton_bg" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/home.imgs.upcoming"
         android:layout_width="match_parent"
@@ -46,10 +61,9 @@
         app:iss_placeholder="@android:color/darker_gray"
         app:iss_selected_dot="@drawable/default_selected_dot"
         app:iss_unselected_dot="@drawable/default_unselected_dot"
-        app:layout_constraintStart_toStartOf="@id/home.events.tvsubtitle1"
-        app:layout_constraintTop_toBottomOf="@id/home.events.tvsubtitle1"
-        tools:ignore="MissingConstraints"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home.events.tvsubtitle1" />
 
     <TextView
         android:id="@+id/home.events.tvsubtitle2"
@@ -64,6 +78,21 @@
         app:layout_constraintStart_toStartOf="@id/home.events.tvtitle"
         app:layout_constraintTop_toBottomOf="@id/home.imgs.upcoming"
         tools:text="@string/navbar_finished_events_home_subtitle" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/home.rv.shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home.events.tvsubtitle2">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/skeleton_bg" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home.events.rvfinished"
@@ -82,10 +111,10 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
