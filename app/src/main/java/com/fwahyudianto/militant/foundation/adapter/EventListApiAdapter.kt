@@ -16,10 +16,6 @@ import com.fwahyudianto.militant.databinding.ItemEventsListBinding
  *  https://www.fwahyudianto.id
  *  ® Wahyudianto, Fajar
  *  Email 	: me@fwahyudianto.id
- *
- * 	Date			User				Note
- *  -------------------------------------------------------------------------------------------------------------------------
- *  End Revised
  */
 
 class EventListApiAdapter(private val eventsList: List<ListEventsItem>) :

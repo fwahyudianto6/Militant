@@ -6,6 +6,13 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ *  This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
+ *  https://www.fwahyudianto.id
+ *  ® Wahyudianto, Fajar
+ *  Email 	: me@fwahyudianto.id
+ */
+
 interface EventService {
     //  Get All Events
     @GET("events")

@@ -9,10 +9,6 @@ import kotlinx.parcelize.Parcelize
  *  https://www.fwahyudianto.id
  *  ® Wahyudianto, Fajar
  *  Email 	: me@fwahyudianto.id
- *
- * 	Date			User				Note
- *  -------------------------------------------------------------------------------------------------------------------------
- *  End Revised
  */
 
 @Parcelize

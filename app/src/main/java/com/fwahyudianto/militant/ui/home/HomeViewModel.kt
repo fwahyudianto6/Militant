@@ -11,26 +11,38 @@ import com.fwahyudianto.militant.data.services.ApiConfig
 import retrofit2.Call
 import retrofit2.Response
 
+/**
+ *  This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
+ *  https://www.fwahyudianto.id
+ *  ® Wahyudianto, Fajar
+ *  Email 	: me@fwahyudianto.id
+ */
+
 class HomeViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "Militan Events"
     }
-    private val mEventCollection = MutableLiveData<List<ListEventsItem>>()
+    private val mFinishedEventsColl = MutableLiveData<List<ListEventsItem>>()
+    private val mUpcomingEventsColl = MutableLiveData<List<ListEventsItem>>()
     private val mIsLoading = MutableLiveData<Boolean>()
+    private val mErrorMessage = MutableLiveData<String>()
 
     val text: LiveData<String> = _text
-    val mEvent: LiveData<List<ListEventsItem>> = mEventCollection
+    val mFinishedEvents: LiveData<List<ListEventsItem>> = mFinishedEventsColl
+    val mUpcomingEvents: LiveData<List<ListEventsItem>> = mUpcomingEventsColl
     val isLoading: LiveData<Boolean> = mIsLoading
+    val errorMessage: LiveData<String> = mErrorMessage
 
     init {
+        getUpcomingEvents()
         getFinishedEvents()
     }
 
     private fun getFinishedEvents() {
         mIsLoading.value = true
 
-        val mUserService = ApiConfig.getApiService().getListByParam(0, null, 5)
-        mUserService.enqueue(object : retrofit2.Callback<EventResponse> {
+        val oFinishedEvents = ApiConfig.getApiService().getListByParam(0, null, 5)
+        oFinishedEvents.enqueue(object : retrofit2.Callback<EventResponse> {
             override fun onResponse(
                 call: Call<EventResponse>,
                 response: Response<EventResponse>
@@ -39,23 +51,67 @@ class HomeViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-//                        Log.d(TAG, "onSuccess: ${responseBody.listEvents}")
-                        setData(responseBody.listEvents)
+//                        Log.d(TAG, "onSuccess-FinishedEvents: ${responseBody.listEvents}")
+                        setData(responseBody.listEvents, mFinishedEventsColl)
                     }
                 } else {
-                    Log.e(TAG, "onFailed: ${response.message()}")
+                    Log.e(TAG, "onFailed-FinishedEvents: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
                 mIsLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+//                Log.e(TAG, "onFailure-FinishedEvents: ${t.message}")
+                handleFailure("FinishedEvents", t)
             }
         })
     }
 
-    private fun setData(itemEvents: List<ListEventsItem>) {
-        mEventCollection.value = itemEvents
+    private fun getUpcomingEvents() {
+        mIsLoading.value = true
+
+        val oUpcomingEvents = ApiConfig.getApiService().getListByParam(1, null, 2)
+        oUpcomingEvents.enqueue(object : retrofit2.Callback<EventResponse> {
+            override fun onResponse(
+                call: Call<EventResponse>,
+                response: Response<EventResponse>
+            ) {
+                mIsLoading.value = false
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+//                        Log.d(TAG, "onSuccess-UpcomingEvents: ${responseBody.listEvents}")
+                        setData(responseBody.listEvents, mUpcomingEventsColl)
+                    }
+                } else {
+                    Log.e(TAG, "onFailed-UpcomingEvents: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<EventResponse>, t: Throwable) {
+                mIsLoading.value = false
+                handleFailure("UpcomingEvents", t)
+            }
+        })
+    }
+
+    private fun setData(
+        itemEvents: List<ListEventsItem>,
+        itemCollections: MutableLiveData<List<ListEventsItem>>
+    ) {
+        itemCollections.value = itemEvents
+    }
+
+    private fun handleFailure(source: String, t: Throwable) {
+        val message = when (t) {
+            is java.net.SocketTimeoutException -> "Timeout!"
+            is java.net.UnknownHostException -> "No internet!"
+            is java.io.IOException -> "Network error!"
+            else -> "Unexpected error: ${t.localizedMessage}"
+        }
+
+        Log.e(TAG, "$source error: $message")
+        mErrorMessage.value = message
     }
 
     companion object {

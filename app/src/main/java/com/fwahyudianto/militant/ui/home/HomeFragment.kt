@@ -18,16 +18,13 @@ import com.fwahyudianto.militant.data.response.ListEventsItem
 import com.fwahyudianto.militant.databinding.FragmentHomeBinding
 import com.fwahyudianto.militant.foundation.adapter.EventListApiAdapter
 import com.fwahyudianto.militant.ui.EventDetailActivity
+import com.google.android.material.snackbar.Snackbar
 
 /**
- * This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
- * https://www.fwahyudianto.id
- * ® Wahyudianto, Fajar
- * Email 	: me@fwahyudianto.id
- *
- * 	Date			User				Note
- *  -------------------------------------------------------------------------------------------------------------------------
- *  End Revised
+ *  This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
+ *  https://www.fwahyudianto.id
+ *  ® Wahyudianto, Fajar
+ *  Email 	: me@fwahyudianto.id
  */
 
 class HomeFragment : Fragment() {
@@ -35,6 +32,7 @@ class HomeFragment : Fragment() {
 
     //  private val mArrEventsList = ArrayList<Event>()
     private var mEvent = listOf<ListEventsItem>()
+    private var mUpcoming = listOf<ListEventsItem>()
 
     private var mHomeBinding: FragmentHomeBinding? = null
     private val oBinding get() = mHomeBinding!!
@@ -47,21 +45,8 @@ class HomeFragment : Fragment() {
     ): View {
         mHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        mRecyleViewEvent = oBinding.rvEvents
+        mRecyleViewEvent = oBinding.homeEventsRvfinished
         mRecyleViewEvent.setHasFixedSize(true)
-
-        if (savedInstanceState == null) {
-            mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
-
-            mHomeViewModel.mEvent.observe(viewLifecycleOwner) { event ->
-                mEvent = event
-
-                getEvents(mEvent)
-            }
-            mHomeViewModel.isLoading.observe(viewLifecycleOwner) {
-                showLoading(it)
-            }
-        }
 
         return oBinding.root
     }
@@ -69,21 +54,30 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //  Image Slideshow
-        val imgList = ArrayList<SlideModel>() // Create image list
-        imgList.add(
-            SlideModel(
-                "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-elevaite_x_dicoding_live_3_data_driven_future_kuasai_data_science_dengan_platform_azure_mc_140325162625.jpg",
-                "elevAIte x Dicoding Live #3 - Data Driven Future: Kuasai Data Science dengan Platform Azure"
-            )
-        )
-        imgList.add(
-            SlideModel(
-                "https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-devcoach_188_soft_skill_bangun_mindset_positif_untuk_skill_progresif_mc_140325115131.png",
-                "DevCoach 188: Soft Skill | Bangun Mindset Positif untuk Skill Progresif!"
-            )
-        )
-        mHomeBinding?.imgsBanners?.setImageList(imgList, ScaleTypes.FIT)
+        if (savedInstanceState == null) {
+            mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
+
+            mHomeViewModel.mUpcomingEvents.observe(viewLifecycleOwner) { lsImages ->
+                val imgList = ArrayList<SlideModel>()
+                mUpcoming = lsImages
+
+                for (i in mUpcoming.indices) {
+                    imgList.add(SlideModel(mUpcoming[i].mediaCover, mUpcoming[i].name))
+                }
+                mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
+            }
+            mHomeViewModel.mFinishedEvents.observe(viewLifecycleOwner) { lsEvents ->
+                mEvent = lsEvents
+                getFinishedEvents(mEvent)
+            }
+            mHomeViewModel.isLoading.observe(viewLifecycleOwner) {
+                showLoading(it)
+            }
+        }
+
+        mHomeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            Snackbar.make(oBinding.root, error, Snackbar.LENGTH_LONG).show()
+        }
     }
 
     override fun onDestroyView() {
@@ -110,15 +104,15 @@ class HomeFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            mHomeBinding!!.pgrbarHome.visibility = View.VISIBLE
-            mHomeBinding!!.rvEvents.alpha = 0.0F
+            mHomeBinding!!.homePrgbar.visibility = View.VISIBLE
+            mHomeBinding!!.homeEventsRvfinished.alpha = 0.0F
         } else {
-            mHomeBinding!!.pgrbarHome.visibility = View.GONE
-            mHomeBinding!!.rvEvents.alpha = 1F
+            mHomeBinding!!.homePrgbar.visibility = View.GONE
+            mHomeBinding!!.homeEventsRvfinished.alpha = 1F
         }
     }
 
-    private fun getEvents(event: List<ListEventsItem>) {
+    private fun getFinishedEvents(event: List<ListEventsItem>) {
         val listEventAdapter = EventListApiAdapter(event)
         mRecyleViewEvent.adapter = listEventAdapter
 

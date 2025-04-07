@@ -7,7 +7,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/tv_home"
+        android:id="@+id/home.events.tvtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_upcoming_home"
+        android:id="@+id/home.events.tvsubtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -30,11 +30,11 @@
         android:text="@string/navbar_upcoming_events_home_subtitle"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tv_home"
-        app:layout_constraintTop_toBottomOf="@id/tv_home" />
+        app:layout_constraintStart_toStartOf="@id/home.events.tvtitle"
+        app:layout_constraintTop_toBottomOf="@id/home.events.tvtitle" />
 
     <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/imgs_banners"
+        android:id="@+id/home.imgs.upcoming"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_margin="16dp"
@@ -46,13 +46,13 @@
         app:iss_placeholder="@android:color/darker_gray"
         app:iss_selected_dot="@drawable/default_selected_dot"
         app:iss_unselected_dot="@drawable/default_unselected_dot"
-        app:layout_constraintStart_toStartOf="@id/tv_upcoming_home"
-        app:layout_constraintTop_toBottomOf="@id/tv_upcoming_home"
+        app:layout_constraintStart_toStartOf="@id/home.events.tvsubtitle1"
+        app:layout_constraintTop_toBottomOf="@id/home.events.tvsubtitle1"
         tools:ignore="MissingConstraints"
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/tv_finished_home"
+        android:id="@+id/home.events.tvsubtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -61,23 +61,24 @@
         android:text="@string/navbar_finished_events_home_subtitle"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tv_home"
-        app:layout_constraintTop_toBottomOf="@id/imgs_banners"
+        app:layout_constraintStart_toStartOf="@id/home.events.tvtitle"
+        app:layout_constraintTop_toBottomOf="@id/home.imgs.upcoming"
         tools:text="@string/navbar_finished_events_home_subtitle" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_events"
+        android:id="@+id/home.events.rvfinished"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_finished_home"
-        app:layout_constraintTop_toBottomOf="@id/tv_finished_home" />
+        app:layout_constraintStart_toStartOf="@id/home.events.tvsubtitle2"
+        app:layout_constraintTop_toBottomOf="@id/home.events.tvsubtitle2" />
 
     <ProgressBar
-        android:id="@+id/pgrbar_home"
+        android:id="@+id/home.prgbar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
