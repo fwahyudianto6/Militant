@@ -45,32 +45,33 @@ class HomeActivity : AppCompatActivity() {
 
         mHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(mHomeBinding.root)
-        setSupportActionBar(mHomeBinding.appBarHome.homeToolbar)
+        setSupportActionBar(mHomeBinding.homeMappbar.homeMappbarToolbar)
 
-        mHomeBinding.appBarHome.fab.setOnClickListener { view ->
+        mHomeBinding.homeMappbar.homeMappbarFab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
+                .setAnchorView(R.id.home_mappbar_fab).show()
         }
 
         //  Set Nav Photo User
-        civNavbarPhoto = mHomeBinding.navView.getHeaderView(0).findViewById(R.id.iv_navbar_photo)
+        civNavbarPhoto =
+            mHomeBinding.homeMnavView.getHeaderView(0).findViewById(R.id.iv_navbar_photo)
         Glide.with(this)
             .load(resources.getString(R.string.developer_photo))
             .into(civNavbarPhoto)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_home)
+        val navController = findNavController(R.id.home_mappbar_navhost_fragment)
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.nav_home, R.id.nav_club, R.id.nav_news, R.id.nav_events, R.id.nav_teams),
-            mHomeBinding.drawerLayout
+            mHomeBinding.homeMdwLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        mHomeBinding.navView.setupWithNavController(navController)
+        mHomeBinding.homeMnavView.setupWithNavController(navController)
 
-        bottomNavigation = findViewById(R.id.bottom_nav_events_view)
+        bottomNavigation = findViewById(R.id.home_mappbar_bottom_nav_view)
         bottomNavigation.setOnItemSelectedListener { item ->
             val navOptions = NavOptions.Builder()
-                .setPopUpTo(R.id.nav_host_fragment_content_home, true)
+                .setPopUpTo(R.id.home_mappbar_navhost_fragment, true)
                 .build()
 
             when (item.itemId) {
@@ -100,7 +101,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_home)
+        val navController = findNavController(R.id.home_mappbar_navhost_fragment)
 
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
@@ -112,7 +113,7 @@ class HomeActivity : AppCompatActivity() {
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_content_home, fragment)
+        fragmentTransaction.replace(R.id.home_mappbar_navhost_fragment, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }

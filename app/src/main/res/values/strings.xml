@@ -2,6 +2,7 @@
     <!-- APPLICATION -->
     <string name="app_name">Militant</string>
     <string name="app_logo_description">&#8230;</string>
+    <string name="contents_description">&#8230;</string>
 
     <!-- DEFAULT VALUE -->
     <string name="players_name">El Djudil</string>

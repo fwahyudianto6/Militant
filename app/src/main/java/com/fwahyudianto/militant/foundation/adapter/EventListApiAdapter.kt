@@ -59,7 +59,7 @@ class EventListApiAdapter(private val eventsList: List<ListEventsItem>) :
 
     companion object {
         @JvmStatic
-        @BindingAdapter("setImage")
+        @BindingAdapter("setAvatar")
         fun setAvatar(imgLogo: ImageView, url: String) {
             Glide.with(imgLogo)
                 .load(url)

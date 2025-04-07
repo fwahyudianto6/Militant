@@ -33,7 +33,7 @@
                 android:layout_height="125dp"
                 android:contentDescription="@string/description"
                 android:scaleType="centerCrop"
-                app:setImage='@{finishedEvents.imageLogo}'
+                app:setAvatar='@{finishedEvents.imageLogo}'
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
