@@ -43,7 +43,7 @@ class UpcomingEventsFragment : Fragment() {
     ): View {
         mUpcomingEventsBinding = FragmentUpcomingEventsBinding.inflate(inflater, container, false)
 
-        mRecyleViewEvent = oBinding.upcomingEventsRvupcoming
+        mRecyleViewEvent = oBinding.upcomingEventsRvitem
         mRecyleViewEvent.setHasFixedSize(true)
 
         if (savedInstanceState == null) {
@@ -57,7 +57,7 @@ class UpcomingEventsFragment : Fragment() {
             showLoading(
                 mUpcomingEventsViewModel.isLoadingUpcoming,
                 mUpcomingEventsBinding!!.upcomingRvShimmer,
-                mUpcomingEventsBinding!!.upcomingEventsRvupcoming
+                mUpcomingEventsBinding!!.upcomingEventsRvitem
             )
         }
 
@@ -138,7 +138,6 @@ class UpcomingEventsFragment : Fragment() {
 
     @Suppress("Unused")
     private fun sendSelectedEvent(event: ListEventsItem) {
-//        Log.d("DEV-sendSelectedEvent", event.toString())
         val oIntEventDetail = Intent(requireContext(), EventDetailActivity::class.java)
 
         oIntEventDetail.putExtra(EventDetailActivity.EVENT_DETAIL, event)
