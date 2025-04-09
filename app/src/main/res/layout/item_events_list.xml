@@ -6,7 +6,7 @@
 
     <data>
         <variable
-            name="finishedEvents"
+            name="dtEvents"
             type="com.fwahyudianto.militant.data.response.ListEventsItem" />
     </data>
 
@@ -33,7 +33,7 @@
                 android:layout_height="125dp"
                 android:contentDescription="@string/description"
                 android:scaleType="centerCrop"
-                app:setAvatar='@{finishedEvents.imageLogo}'
+                app:setAvatar='@{dtEvents.imageLogo}'
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text='@{finishedEvents.category}'
+                android:text='@{dtEvents.category}'
                 android:textAlignment="textStart"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:maxLines="2"
-                android:text='@{finishedEvents.name}'
+                android:text='@{dtEvents.name}'
                 android:textAlignment="textStart"
                 android:textColor="#FF5483"
                 card_view:layout_constraintBottom_toBottomOf="@+id/img_item_events_image"
@@ -78,7 +78,7 @@
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text='@{finishedEvents.summary}'
+                android:text='@{dtEvents.summary}'
                 card_view:layout_constraintBottom_toBottomOf="@+id/img_item_events_image"
                 card_view:layout_constraintEnd_toEndOf="@+id/tv_item_events_name"
                 card_view:layout_constraintStart_toStartOf="@+id/tv_item_events_name"

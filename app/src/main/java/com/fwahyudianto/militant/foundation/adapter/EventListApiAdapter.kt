@@ -44,7 +44,7 @@ class EventListApiAdapter(private val eventsList: List<ListEventsItem>) :
     class ListViewHolder(private var binding: ItemEventsListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ListEventsItem) {
-            binding.finishedEvents = data
+            binding.dtEvents = data
             binding.executePendingBindings()
         }
     }
