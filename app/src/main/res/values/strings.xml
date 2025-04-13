@@ -43,6 +43,8 @@
     <string name="activity_detail_lbl_strLeagueGoals">League Goals</string>
     <string name="btn_favorite_strFavorite">Favorite</string>"
     <string name="btn_share_strShare">Share</string>
+    <string name="btn_event_strRegister">Register</string>
+
     <!-- Player's Tshirt No -->
     <integer-array name="arrPlayersNo">
         <item>12</item>
