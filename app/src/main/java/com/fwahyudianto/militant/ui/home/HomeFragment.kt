@@ -1,11 +1,16 @@
 package com.fwahyudianto.militant.ui.home
 
 //  Import Library
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
@@ -41,6 +46,11 @@ class HomeFragment : Fragment() {
     private var mHomeBinding: FragmentHomeBinding? = null
     private val oBinding get() = mHomeBinding!!
     private val mHomeViewModel: HomeViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -88,6 +98,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mHomeViewModel.mSearchEvents.observe(viewLifecycleOwner) { lsEvents ->
+            mEvent = lsEvents
+            getFinishedEvents(mEvent)
+        }
         mHomeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             Snackbar.make(oBinding.root, error, Snackbar.LENGTH_LONG).show()
         }
@@ -96,6 +110,33 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         mHomeBinding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home, menu)
+
+        val searchManager =
+            requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        // Bind search ke ViewModel
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
+        searchView.queryHint = "Cari event ..."
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                mHomeViewModel.newText = query ?: ""
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                mHomeViewModel.newText = newText ?: ""
+                return true
+            }
+        })
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     //  Get Events

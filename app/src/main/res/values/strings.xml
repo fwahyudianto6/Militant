@@ -15,6 +15,7 @@
     <string name="events_name">Events Name</string>
     <string name="events_summary">Donec tempor nibh eget aliquam finibus. Vivamus pharetra aliquam molestie. Sed eget tempus magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="events_descriptions">Donec tempor nibh eget aliquam finibus. Vivamus pharetra aliquam molestie. Sed eget tempus magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla ante, sagittis et dolor quis, semper vulputate augue. Fusce id orci mollis, mattis arcu at, finibus nulla. Ut ultricies hendrerit mi, eget accumsan quam sagittis non. Donec a felis sit amet felis pulvinar maximus id eget velit. Aliquam pretium gravida tortor, vel maximus nisl varius ut. </string>
+    <string name="events_search">Search Events</string>
 
     <!-- DEVELOPER PROFILE -->
     <string name="developer_photo">https://avatars.githubusercontent.com/u/12522356?v=4</string>

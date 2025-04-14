@@ -10,6 +10,7 @@ import com.fwahyudianto.militant.data.response.ListEventsItem
 import com.fwahyudianto.militant.data.services.ApiConfig
 import retrofit2.Call
 import retrofit2.Response
+import java.util.Locale
 
 /**
  *  This software, all associated documentation, and all copies are CONFIDENTIAL INFORMATION of Kalpawreksa Teknologi Indonesia
@@ -24,13 +25,18 @@ class HomeViewModel : ViewModel() {
     }
     private val mUpcomingEventsColl = MutableLiveData<List<ListEventsItem>>()
     private val mFinishedEventsColl = MutableLiveData<List<ListEventsItem>>()
+    private val mSearchEventsColl = MutableLiveData<List<ListEventsItem>>()
+
     private val mIsLoadingUpcoming = MutableLiveData<Boolean>()
     private val mIsLoadingFinished = MutableLiveData<Boolean>()
     private val mErrorMessage = MutableLiveData<String>()
 
+    var filtered = mutableListOf<ListEventsItem>()
     val text: LiveData<String> = _text
     val mUpcomingEvents: LiveData<List<ListEventsItem>> = mUpcomingEventsColl
     val mFinishedEvents: LiveData<List<ListEventsItem>> = mFinishedEventsColl
+    val mSearchEvents: LiveData<List<ListEventsItem>> = mSearchEventsColl
+
     val isLoadingUpcoming: LiveData<Boolean> = mIsLoadingUpcoming
     val isLoadingFinished: LiveData<Boolean> = mIsLoadingFinished
     val errorMessage: LiveData<String> = mErrorMessage
@@ -96,6 +102,46 @@ class HomeViewModel : ViewModel() {
             }
         })
     }
+
+    private fun searchEvents(query: String) {
+        val oSearchingEvents = ApiConfig.getApiService().getListByParam(0, query, 5)
+        oSearchingEvents.enqueue(object : retrofit2.Callback<EventResponse> {
+            override fun onResponse(
+                call: Call<EventResponse>,
+                response: Response<EventResponse>
+            ) {
+                mIsLoadingUpcoming.value = false
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        Log.d(TAG, "onSuccess-Events: ${responseBody.listEvents}")
+                        setData(responseBody.listEvents, mSearchEventsColl)
+                    }
+                } else {
+                    Log.e(TAG, "onFailed-Events: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<EventResponse>, t: Throwable) {
+                mIsLoadingUpcoming.value = false
+                handleFailure("Events", t)
+            }
+        })
+    }
+
+    fun search() {
+        filtered.clear()
+        val filteredtext = newText.lowercase(Locale.getDefault())
+        if (filteredtext.isNotEmpty()) {
+            searchEvents(filteredtext)
+        }
+    }
+
+    var newText: String = ""
+        set(value) {
+            field = value
+            search()
+        }
 
     private fun setData(
         itemEvents: List<ListEventsItem>,
