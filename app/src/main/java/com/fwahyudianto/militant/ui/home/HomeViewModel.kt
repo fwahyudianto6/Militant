@@ -31,7 +31,7 @@ class HomeViewModel : ViewModel() {
     private val mIsLoadingFinished = MutableLiveData<Boolean>()
     private val mErrorMessage = MutableLiveData<String>()
 
-    var filtered = mutableListOf<ListEventsItem>()
+    private var filtered = mutableListOf<ListEventsItem>()
     val text: LiveData<String> = _text
     val mUpcomingEvents: LiveData<List<ListEventsItem>> = mUpcomingEventsColl
     val mFinishedEvents: LiveData<List<ListEventsItem>> = mFinishedEventsColl
@@ -129,7 +129,7 @@ class HomeViewModel : ViewModel() {
         })
     }
 
-    fun search() {
+    private fun search() {
         filtered.clear()
         val filteredtext = newText.lowercase(Locale.getDefault())
         if (filteredtext.isNotEmpty()) {

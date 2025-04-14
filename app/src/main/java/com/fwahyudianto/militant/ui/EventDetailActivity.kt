@@ -58,7 +58,7 @@ class EventDetailActivity : AppCompatActivity() {
             try {
                 val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
                 val dtEventEnd: Date =
-                    format.parse(eventEnd) ?: Date(0)  // Default: 1970 jika parsing gagal
+                    format.parse(eventEnd) ?: Date(0)
                 val dtCurrent = Date()
 
                 if (dtCurrent.after(dtEventEnd)) {

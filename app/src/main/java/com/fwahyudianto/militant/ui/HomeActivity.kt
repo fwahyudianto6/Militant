@@ -95,29 +95,9 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        menuInflater.inflate(R.menu.home, menu)
+//        return true
 
         return super.onCreateOptionsMenu(menu)
-
-//        val searchItem = menu.findItem(R.id.action_search)
-//        val searchView = searchItem.actionView as SearchView
-//
-//        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-//        searchView.queryHint = "Search events ..."
-//
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                // Implement the query submit behavior here
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                // Implement query text change behavior here
-//                return true
-//            }
-//        })
-
-//        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

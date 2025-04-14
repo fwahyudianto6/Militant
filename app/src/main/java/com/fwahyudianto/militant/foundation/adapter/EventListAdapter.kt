@@ -20,6 +20,7 @@ import com.fwahyudianto.militant.databinding.ItemEventsListBinding
  */
 
 //  Events List Adapter constructor
+@Suppress("Unused")
 class EventListAdapter(private val oEventList: ArrayList<Event>) :
     RecyclerView.Adapter<EventListAdapter.ListViewHolder>() {
 
@@ -47,8 +48,8 @@ class EventListAdapter(private val oEventList: ArrayList<Event>) :
 
 //        holder.binding.imgItemEventsImage.setImageResource(image)
         Glide.with(holder.itemView.context)
-            .load(image) // URL Gambar
-            .into(holder.binding.imgItemEventsImage) // imageView mana yang akan diterapkan
+            .load(image)
+            .into(holder.binding.imgItemEventsImage)
         holder.binding.tvItemEventsCategory.text = category
         holder.binding.tvItemEventsName.text = name
         holder.binding.tvItemEventsSummary.text = if (summary.length > maxLength) {

@@ -19,11 +19,6 @@ import retrofit2.Response
  */
 
 class UpcomingEventsViewModel : ViewModel() {
-    private val mUpcomingEventsText = MutableLiveData<String>().apply {
-        value =
-            "This feature [UpcomingEvents] is currently under development. Stay tuned for updates!"
-    }
-
     private val mUpcomingEventsColl = MutableLiveData<List<ListEventsItem>>()
     private val mIsLoadingUpcoming = MutableLiveData<Boolean>()
     private val mErrorMessage = MutableLiveData<String>()
@@ -31,8 +26,6 @@ class UpcomingEventsViewModel : ViewModel() {
     val mUpcomingEvents: LiveData<List<ListEventsItem>> = mUpcomingEventsColl
     val isLoadingUpcoming: LiveData<Boolean> = mIsLoadingUpcoming
     val errorMessage: LiveData<String> = mErrorMessage
-
-    val dtUpcomingEvents: LiveData<String> = mUpcomingEventsText
 
     init {
         getUpcomingEvents()
