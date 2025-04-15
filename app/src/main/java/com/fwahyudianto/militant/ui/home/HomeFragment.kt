@@ -39,7 +39,6 @@ import com.google.android.material.snackbar.Snackbar
 class HomeFragment : Fragment() {
     private lateinit var mRecyleViewEvent: RecyclerView
 
-    //  private val mArrEventsList = ArrayList<Event>()
     private var mEvent = listOf<ListEventsItem>()
     private var mUpcoming = listOf<ListEventsItem>()
 
@@ -60,55 +59,33 @@ class HomeFragment : Fragment() {
     ): View {
         mHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        mRecyleViewEvent = oBinding.homeEventsRvfinished
-        mRecyleViewEvent.setHasFixedSize(true)
-
-        if (savedInstanceState == null) {
-            mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
-
-            mHomeViewModel.mUpcomingEvents.observe(viewLifecycleOwner) { lsImages ->
-                val imgList = ArrayList<SlideModel>()
-                mUpcoming = lsImages
-
-                for (i in mUpcoming.indices) {
-                    imgList.add(SlideModel(mUpcoming[i].mediaCover, mUpcoming[i].name))
-                }
-                mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
-            }
-            mHomeViewModel.mFinishedEvents.observe(viewLifecycleOwner) { lsEvents ->
-                mEvent = lsEvents
-                getFinishedEvents(mEvent)
-            }
-
-            showLoading(
-                mHomeViewModel.isLoadingUpcoming,
-                mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming,
-                mHomeBinding!!.root, mHomeBinding!!.homeEventsTvsubtitle2,
-                mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming
-            )
-
-            showLoading(
-                mHomeViewModel.isLoadingFinished,
-                mHomeBinding!!.homeRvShimmer, mHomeBinding!!.homeEventsRvfinished
-            )
-        }
-
         return oBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mHomeViewModel.mSearchEvents.observe(viewLifecycleOwner) { lsEvents ->
-            val imgList = ArrayList<SlideModel>()
-            mEvent = lsEvents
+        mRecyleViewEvent = oBinding.homeEventsRvfinished
 
-            for (i in mEvent.indices) {
-                imgList.add(SlideModel(mEvent[i].mediaCover, mEvent[i].name))
-            }
-            mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
-            getFinishedEvents(mEvent)
-        }
+        mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
+        mRecyleViewEvent.setHasFixedSize(true)
+
+        observerUpcomingEvents()
+        observerFinishedEvents()
+        observerSearchEvents()
+
+        showLoading(
+            mHomeViewModel.isLoadingUpcoming,
+            mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming,
+            mHomeBinding!!.root, mHomeBinding!!.homeEventsTvsubtitle2,
+            mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming
+        )
+
+        showLoading(
+            mHomeViewModel.isLoadingFinished,
+            mHomeBinding!!.homeRvShimmer, mHomeBinding!!.homeEventsRvfinished
+        )
+
         mHomeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             Snackbar.make(oBinding.root, error, Snackbar.LENGTH_LONG).show()
         }
@@ -148,6 +125,38 @@ class HomeFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    private fun observerUpcomingEvents() {
+        mHomeViewModel.mUpcomingEvents.observe(viewLifecycleOwner) { lsImages ->
+            val imgList = ArrayList<SlideModel>()
+            mUpcoming = lsImages
+
+            for (i in mUpcoming.indices) {
+                imgList.add(SlideModel(mUpcoming[i].mediaCover, mUpcoming[i].name))
+            }
+            mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
+        }
+    }
+
+    private fun observerFinishedEvents() {
+        mHomeViewModel.mFinishedEvents.observe(viewLifecycleOwner) { lsEvents ->
+            mEvent = lsEvents
+            getFinishedEvents(mEvent)
+        }
+    }
+
+    private fun observerSearchEvents() {
+        mHomeViewModel.mSearchEvents.observe(viewLifecycleOwner) { lsEvents ->
+            val imgList = ArrayList<SlideModel>()
+            mEvent = lsEvents
+
+            for (i in mEvent.indices) {
+                imgList.add(SlideModel(mEvent[i].mediaCover, mEvent[i].name))
+            }
+            mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
+            getFinishedEvents(mEvent)
+        }
+    }
+
     //  Get Events
     @Suppress("Unused")
     private fun getEvent(): ArrayList<Event> {
@@ -165,6 +174,7 @@ class HomeFragment : Fragment() {
         return lsEvents
     }
 
+    //  Show Loading
     private fun showLoading(
         isLoading: LiveData<Boolean>,
         shimmerView: ShimmerFrameLayout,

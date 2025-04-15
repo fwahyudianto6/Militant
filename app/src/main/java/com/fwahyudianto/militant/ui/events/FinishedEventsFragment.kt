@@ -43,24 +43,6 @@ class FinishedEventsFragment : Fragment() {
     ): View {
         mFinishedEventsBinding = FragmentFinishedEventsBinding.inflate(inflater, container, false)
 
-        mRecyleViewEvent = oBinding.finishedEventsRvitem
-        mRecyleViewEvent.setHasFixedSize(true)
-
-        if (savedInstanceState == null) {
-            mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
-
-            mFinishedEventsViewModel.mFinishedEvents.observe(viewLifecycleOwner) { lsEvents ->
-                mFinished = lsEvents
-                getFinishedEvents(mFinished)
-            }
-
-            showLoading(
-                mFinishedEventsViewModel.isLoadingFinished,
-                mFinishedEventsBinding!!.finishedRvShimmer,
-                mFinishedEventsBinding!!.finishedEventsRvitem
-            )
-        }
-
         return oBinding.root
     }
 
@@ -71,6 +53,22 @@ class FinishedEventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mRecyleViewEvent = oBinding.finishedEventsRvitem
+
+        mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
+        mRecyleViewEvent.setHasFixedSize(true)
+
+        mFinishedEventsViewModel.mFinishedEvents.observe(viewLifecycleOwner) { lsEvents ->
+            mFinished = lsEvents
+            getFinishedEvents(mFinished)
+        }
+
+        showLoading(
+            mFinishedEventsViewModel.isLoadingFinished,
+            mFinishedEventsBinding!!.finishedRvShimmer,
+            mFinishedEventsBinding!!.finishedEventsRvitem
+        )
 
         //  Set View Model
         mFinishedEventsViewModel.errorMessage.observe(viewLifecycleOwner) { error ->

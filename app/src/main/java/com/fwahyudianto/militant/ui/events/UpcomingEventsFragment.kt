@@ -43,24 +43,6 @@ class UpcomingEventsFragment : Fragment() {
     ): View {
         mUpcomingEventsBinding = FragmentUpcomingEventsBinding.inflate(inflater, container, false)
 
-        mRecyleViewEvent = oBinding.upcomingEventsRvitem
-        mRecyleViewEvent.setHasFixedSize(true)
-
-        if (savedInstanceState == null) {
-            mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
-
-            mUpcomingEventsViewModel.mUpcomingEvents.observe(viewLifecycleOwner) { lsEvents ->
-                mUpcoming = lsEvents
-                getUpcomingEvents(mUpcoming)
-            }
-
-            showLoading(
-                mUpcomingEventsViewModel.isLoadingUpcoming,
-                mUpcomingEventsBinding!!.upcomingRvShimmer,
-                mUpcomingEventsBinding!!.upcomingEventsRvitem
-            )
-        }
-
         return oBinding.root
     }
 
@@ -71,6 +53,22 @@ class UpcomingEventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mRecyleViewEvent = oBinding.upcomingEventsRvitem
+
+        mRecyleViewEvent.layoutManager = LinearLayoutManager(this.requireContext())
+        mRecyleViewEvent.setHasFixedSize(true)
+
+        mUpcomingEventsViewModel.mUpcomingEvents.observe(viewLifecycleOwner) { lsEvents ->
+            mUpcoming = lsEvents
+            getUpcomingEvents(mUpcoming)
+        }
+
+        showLoading(
+            mUpcomingEventsViewModel.isLoadingUpcoming,
+            mUpcomingEventsBinding!!.upcomingRvShimmer,
+            mUpcomingEventsBinding!!.upcomingEventsRvitem
+        )
 
         mUpcomingEventsViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
             Snackbar.make(oBinding.root, error, Snackbar.LENGTH_LONG).show()
