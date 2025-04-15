@@ -107,7 +107,7 @@ class HomeFragment : Fragment() {
 
         // Bind search ke ViewModel
         searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
-        searchView.queryHint = "Cari event ..."
+        searchView.queryHint = "Search events ..."
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
