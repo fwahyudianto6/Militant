@@ -49,7 +49,7 @@ class HomeViewModel : ViewModel() {
     private fun getFinishedEvents() {
         mIsLoadingFinished.value = true
 
-        val oFinishedEvents = ApiConfig.getApiService().getListByParam(0, null, 5)
+        val oFinishedEvents = ApiConfig.getApiService().getListByParam(0)
         oFinishedEvents.enqueue(object : retrofit2.Callback<EventResponse> {
             override fun onResponse(
                 call: Call<EventResponse>,
@@ -78,7 +78,7 @@ class HomeViewModel : ViewModel() {
     private fun getUpcomingEvents() {
         mIsLoadingUpcoming.value = true
 
-        val oUpcomingEvents = ApiConfig.getApiService().getListByParam(1, null, 5)
+        val oUpcomingEvents = ApiConfig.getApiService().getListByParam(1)
         oUpcomingEvents.enqueue(object : retrofit2.Callback<EventResponse> {
             override fun onResponse(
                 call: Call<EventResponse>,

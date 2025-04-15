@@ -54,23 +54,8 @@ class EventDetailActivity : AppCompatActivity() {
 
         supportActionBar?.title = dtEvent?.name
 
-        dtEvent?.endTime?.let { eventEnd ->
-            try {
-                val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-                val dtEventEnd: Date =
-                    format.parse(eventEnd) ?: Date(0)
-                val dtCurrent = Date()
-
-                if (dtCurrent.after(dtEventEnd)) {
-                    oDetailBinding.btnDetailEventsRegistration.visibility = View.GONE
-                }
-            } catch (e: Exception) {
-                Log.e("EventDetailActivity", "Error parsing endTime: ${e.message}")
-                oDetailBinding.btnDetailEventsRegistration.visibility = View.GONE
-            }
-        }
-
         //  Register Event
+        //  setHideRegister(dtEvent?.endTime)
         oDetailBinding.btnDetailEventsRegistration.setOnClickListener {
             val urlRegister = dtEvent?.link
 
@@ -97,6 +82,25 @@ class EventDetailActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    @Suppress("Unused")
+    private fun setHideRegister(strEndTime: String? = null) {
+        strEndTime?.let { dtEventEndTime ->
+            try {
+                val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+                val dtEventEnd: Date =
+                    format.parse(dtEventEndTime) ?: Date(0)
+                val dtCurrent = Date()
+
+                if (dtCurrent.after(dtEventEnd)) {
+                    oDetailBinding.btnDetailEventsRegistration.visibility = View.GONE
+                }
+            } catch (e: Exception) {
+                Log.e("EventDetailActivity", "Error parsing endTime: ${e.message}")
+                oDetailBinding.btnDetailEventsRegistration.visibility = View.GONE
+            }
         }
     }
 

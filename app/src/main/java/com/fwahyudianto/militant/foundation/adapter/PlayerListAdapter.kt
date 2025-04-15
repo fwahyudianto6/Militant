@@ -63,7 +63,10 @@ class PlayerListAdapter(private val oPlayerList: ArrayList<Player>) :
         }
 
         //  Set OnClick Listener event
-        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(oPlayerList[holder.adapterPosition]) }
+        holder.itemView.setOnClickListener {
+            @Suppress("DEPRECATION")
+            onItemClickCallback.onItemClicked(oPlayerList[holder.adapterPosition])
+        }
     }
 
     //  Method setOnItemClickCallback

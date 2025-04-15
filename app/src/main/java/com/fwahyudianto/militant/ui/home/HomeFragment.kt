@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        @Suppress("DEPRECATION")
         setHasOptionsMenu(true)
     }
 
@@ -99,7 +100,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mHomeViewModel.mSearchEvents.observe(viewLifecycleOwner) { lsEvents ->
+            val imgList = ArrayList<SlideModel>()
             mEvent = lsEvents
+
+            for (i in mEvent.indices) {
+                imgList.add(SlideModel(mEvent[i].mediaCover, mEvent[i].name))
+            }
+            mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
             getFinishedEvents(mEvent)
         }
         mHomeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
@@ -112,6 +119,7 @@ class HomeFragment : Fragment() {
         mHomeBinding = null
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home, menu)
 
@@ -136,6 +144,7 @@ class HomeFragment : Fragment() {
             }
         })
 
+        @Suppress("DEPRECATION")
         super.onCreateOptionsMenu(menu, inflater)
     }
 

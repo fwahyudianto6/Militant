@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- APPLICATION -->
     <string name="app_name">Militant</string>
     <string name="app_logo_description">&#8230;</string>
@@ -13,7 +13,7 @@
     <!-- COMMON-EVENTS VALUE -->
     <string name="events_category">Events Category</string>
     <string name="events_name">Events Name</string>
-    <string name="events_summary">Donec tempor nibh eget aliquam finibus. Vivamus pharetra aliquam molestie. Sed eget tempus magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="events_summary">Donec tempor nibh eget aliquam finibus. Vivamus pharetra aliquam molestie. Sed eget tempus magna.</string>
     <string name="events_descriptions">Donec tempor nibh eget aliquam finibus. Vivamus pharetra aliquam molestie. Sed eget tempus magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nulla ante, sagittis et dolor quis, semper vulputate augue. Fusce id orci mollis, mattis arcu at, finibus nulla. Ut ultricies hendrerit mi, eget accumsan quam sagittis non. Donec a felis sit amet felis pulvinar maximus id eget velit. Aliquam pretium gravida tortor, vel maximus nisl varius ut. </string>
     <string name="events_search">Search Events</string>
 
@@ -134,11 +134,11 @@
     <!-- Events List -->
     <!-- Event's Image -->
     <string-array name="arrEventsImage">
-        <item>https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-devcoach_187_kotlin_101_kuasai_bahasa_kotlin_dalam_1_jam_logo_110325160052.png</item>
-        <item>https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-devcoach_186_machine_learning_unsupervised_learning_hidden_clustering_pattern_discovery_logo_270225145420.png</item>
-        <item>https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-idcamp_alumni_dialogue_3_unlock_your_potential_menjadi_instruktur_fasilitator_dan_speaker_handal_sambil_bekerja_logo_180225165741.png</item>
-        <item>https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-elevaite_x_dicoding_live_2_copilot_hacks_rahasia_prompt_engineering_biar_ai_kerja_maksimal_logo_070225182122.png</item>
-        <item>https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-idcamp_x_dicoding_live_6_frontend_vs_backend_a_never_ending_love_hate_relationship_logo_240125212729.png</item>
+        <item tools:ignore="Typos">https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-devcoach_187_kotlin_101_kuasai_bahasa_kotlin_dalam_1_jam_logo_110325160052.png</item>
+        <item tools:ignore="Typos">https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-devcoach_186_machine_learning_unsupervised_learning_hidden_clustering_pattern_discovery_logo_270225145420.png</item>
+        <item tools:ignore="Typos">https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-idcamp_alumni_dialogue_3_unlock_your_potential_menjadi_instruktur_fasilitator_dan_speaker_handal_sambil_bekerja_logo_180225165741.png</item>
+        <item tools:ignore="Typos">https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-elevaite_x_dicoding_live_2_copilot_hacks_rahasia_prompt_engineering_biar_ai_kerja_maksimal_logo_070225182122.png</item>
+        <item tools:ignore="Typos">https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/event/dos-idcamp_x_dicoding_live_6_frontend_vs_backend_a_never_ending_love_hate_relationship_logo_240125212729.png</item>
     </string-array>
     <!-- Event's Category -->
     <string-array name="arrEventsCategory">

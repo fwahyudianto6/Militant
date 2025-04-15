@@ -34,7 +34,7 @@ class FinishedEventsViewModel : ViewModel() {
     private fun getFinishedEvents() {
         mIsLoadingFinished.value = true
 
-        val oFinishedEvents = ApiConfig.getApiService().getListByParam(0, null, 15)
+        val oFinishedEvents = ApiConfig.getApiService().getListByParam(0)
         oFinishedEvents.enqueue(object : retrofit2.Callback<EventResponse> {
             override fun onResponse(
                 call: Call<EventResponse>,
@@ -54,7 +54,7 @@ class FinishedEventsViewModel : ViewModel() {
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
                 mIsLoadingFinished.value = false
-                handleFailure("FinishedEvents", t)
+                handleFailure(t)
             }
         })
     }
@@ -66,7 +66,8 @@ class FinishedEventsViewModel : ViewModel() {
         itemCollections.value = itemEvents
     }
 
-    private fun handleFailure(source: String, t: Throwable) {
+    private fun handleFailure(t: Throwable) {
+        val source = "FinishedEvents"
         val message = when (t) {
             is java.net.SocketTimeoutException -> "Timeout!"
             is java.net.UnknownHostException -> "No internet!"

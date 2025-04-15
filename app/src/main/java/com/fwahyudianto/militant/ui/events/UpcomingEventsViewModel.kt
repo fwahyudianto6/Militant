@@ -34,7 +34,7 @@ class UpcomingEventsViewModel : ViewModel() {
     private fun getUpcomingEvents() {
         mIsLoadingUpcoming.value = true
 
-        val oUpcomingEvents = ApiConfig.getApiService().getListByParam(1, null, 5)
+        val oUpcomingEvents = ApiConfig.getApiService().getListByParam(1)
         oUpcomingEvents.enqueue(object : retrofit2.Callback<EventResponse> {
             override fun onResponse(
                 call: Call<EventResponse>,
@@ -54,7 +54,7 @@ class UpcomingEventsViewModel : ViewModel() {
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
                 mIsLoadingUpcoming.value = false
-                handleFailure("UpcomingEvents", t)
+                handleFailure(t)
             }
         })
     }
@@ -66,7 +66,8 @@ class UpcomingEventsViewModel : ViewModel() {
         itemCollections.value = itemEvents
     }
 
-    private fun handleFailure(source: String, t: Throwable) {
+    private fun handleFailure(t: Throwable) {
+        val source = "UpcomingEvents"
         val message = when (t) {
             is java.net.SocketTimeoutException -> "Timeout!"
             is java.net.UnknownHostException -> "No internet!"
