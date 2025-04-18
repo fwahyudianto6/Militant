@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -10,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId = "com.fwahyudianto.militant"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0.3"
+        versionName = "1.0.12"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -48,9 +50,28 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.core.splashscreen)
 
+    // Implement AndroidX
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.recyclerview)
+
     // Kotlin DSL (new version)
-    implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.circleimageview)
+    implementation(libs.glide)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment.ktx)
+
+    //  Image Slider
+    implementation(libs.imageslideshow)
+    //  Shimmer
+    implementation(libs.shimmer)
+
+    //  Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     //  Unit Testing
     testImplementation(libs.junit)

@@ -25,6 +25,7 @@ import com.fwahyudianto.militant.databinding.ActivityPlayerDetailBinding
  *  End Revised
  */
 
+@Suppress("DEPRECATION")
 class PlayerDetailActivity : AppCompatActivity() {
     //  Initialize
     private lateinit var oBinding: ActivityPlayerDetailBinding
@@ -38,15 +39,19 @@ class PlayerDetailActivity : AppCompatActivity() {
         val dtPlayer = intent.getParcelableExtra<Player>("PLAYER_DETAIL")
 
         oBinding.imgPhoto.setImageResource(dtPlayer?.iPlayerPhoto!!)
-        oBinding.tvNickName.text = dtPlayer?.strPlayerName.toString()
-        oBinding.tvNumber.text = dtPlayer?.iTshirt.toString()
-        oBinding.tvNumberTshirt.text = dtPlayer?.iTshirt.toString()
-        oBinding.tvFullName.text = dtPlayer?.strPlayerFullName.toString()
-        oBinding.tvFullNameDescription.text = dtPlayer?.strPlayerName.toString()
-        oBinding.tvDescription.text = dtPlayer?.strPlayerDescription.toString()
+        dtPlayer.strPlayerName.also {
+            oBinding.tvNickName.text = it
+            oBinding.tvFullNameDescription.text = it
+        }
+        dtPlayer.iTshirt.toString().also {
+            oBinding.tvNumber.text = it
+            oBinding.tvNumberTshirt.text = it
+        }
+        oBinding.tvFullName.text = dtPlayer.strPlayerFullName
+        oBinding.tvDescription.text = dtPlayer.strPlayerDescription
 
         val detailText =
-            "⚡ " + dtPlayer?.strPlayerName.toString() + " - Bintang AC Milan ❤\uFE0F\uD83D\uDDA4! ⚡\n #ACMilan #Rossoneri\""
+            "⚡ " + dtPlayer.strPlayerName + " - Bintang AC Milan ❤\uFE0F\uD83D\uDDA4! ⚡\n #ACMilan #Rossoneri\""
         oBinding.btnShare.setOnClickListener {
             //  Toast.makeText(this, "Share: " + dtPlayer?.strPlayerName.toString(), Toast.LENGTH_SHORT).show()
             shareContent(detailText)

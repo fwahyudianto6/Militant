@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <!-- Home Navigation-->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.fwahyudianto.militant.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_club"
+            app:destination="@id/nav_club" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_news"
+            app:destination="@id/nav_news" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_events"
+            app:destination="@id/nav_events" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_teams"
+            app:destination="@id/nav_teams" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_club"
+        android:name="com.fwahyudianto.militant.ui.club.ClubFragment"
+        android:label="@string/menu_club"
+        tools:layout="@layout/fragment_club" />
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.fwahyudianto.militant.ui.news.NewsFragment"
+        android:label="@string/menu_news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/nav_events"
+        android:name="com.fwahyudianto.militant.ui.events.EventsFragment"
+        android:label="@string/menu_events"
+        tools:layout="@layout/fragment_events" />
+    <fragment
+        android:id="@+id/nav_teams"
+        android:name="com.fwahyudianto.militant.ui.teams.TeamsFragment"
+        android:label="@string/menu_teams"
+        tools:layout="@layout/fragment_teams" />
+
+    <!-- Events Navigation -->
+    <fragment
+        android:id="@+id/nav_upcoming_events"
+        android:name="com.fwahyudianto.militant.ui.events.UpcomingEventsFragment"
+        android:label="@string/menu_upcoming_events"
+        tools:layout="@layout/fragment_upcoming_events" />
+    <fragment
+        android:id="@+id/nav_finished_events"
+        android:name="com.fwahyudianto.militant.ui.events.FinishedEventsFragment"
+        android:label="@string/menu_finished_events"
+        tools:layout="@layout/fragment_finished_events" />
+</navigation>

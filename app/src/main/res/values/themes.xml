@@ -1,13 +1,25 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Militant" parent="Theme.Material3.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!--    <style name="Theme.Militant.Splash" parent="Base.Theme.Militant">-->
-    <!--        <item name="windowSplashScreenBackground">@color/white</item>-->
-    <!--        <item name="windowSplashScreenAnimatedIcon">@drawable/mi_logo</item>-->
-    <!--        <item name="postSplashScreenTheme">@style/Base.Theme.Militant</item>-->
-    <!--    </style>-->
+    <style name="Base.Theme.Militant.Splash.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Base.Theme.Militant.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--    ThemeOverlay.AppCompat.Dark.ActionBar-->
+    <style name="Base.Theme.Militant.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Base.Theme.Militant.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -33,11 +33,13 @@ import com.fwahyudianto.militant.foundation.adapter.PlayerListAdapter
  *  End Revised
  */
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     //  Initialize
     companion object {
-        private val M_STATE_LIST = "state_list"
+        private const val M_STATE_LIST = "state_list"
     }
+
     private lateinit var oRvPlayer: RecyclerView
     private val arrPlayerList = ArrayList<Player>()
     private lateinit var oBinding: ActivityMainBinding
@@ -55,11 +57,11 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             arrPlayerList.addAll(getPlayer())
-            PlayerList()
+            playerList()
         } else {
-            arrPlayerList.addAll(savedInstanceState.getParcelableArrayList<Player>(M_STATE_LIST)!!)
+            arrPlayerList.addAll(savedInstanceState.getParcelableArrayList(M_STATE_LIST)!!)
             Log.d("DEV-savedInstanceState", "EXIST")
-            PlayerList()
+            playerList()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -70,9 +72,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Save State
-    override fun onSaveInstanceState(oBundle: Bundle) {
-        super.onSaveInstanceState(oBundle)
-        oBundle.putParcelableArrayList(M_STATE_LIST, arrPlayerList)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(M_STATE_LIST, arrPlayerList)
     }
 
     //  Initial Option Menu
@@ -88,9 +90,11 @@ class MainActivity : AppCompatActivity() {
             R.id.imenu_list -> {
                 oRvPlayer.layoutManager = LinearLayoutManager(this)
             }
+
             R.id.imenu_grid -> {
                 oRvPlayer.layoutManager = GridLayoutManager(this, 2)
             }
+
             R.id.imenu_about -> {
                 val oIntAbout = Intent(this@MainActivity, AboutActivity::class.java)
                 startActivity(oIntAbout)
@@ -111,7 +115,13 @@ class MainActivity : AppCompatActivity() {
         val lsPlayer = ArrayList<Player>()
 
         for (i in dtName.indices) {
-            val oPlayer = Player(dtNo[i], dtPhoto.getResourceId(i, -1), dtName[i], dtFullName[i], dtDescription[i])
+            val oPlayer = Player(
+                dtNo[i],
+                dtPhoto.getResourceId(i, -1),
+                dtName[i],
+                dtFullName[i],
+                dtDescription[i]
+            )
             lsPlayer.add(oPlayer)
         }
 
@@ -119,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Show Player List
-    private fun PlayerList() {
+    private fun playerList() {
         if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             oRvPlayer.layoutManager = GridLayoutManager(this, 2)
         } else {
@@ -138,8 +148,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     //  Show Player selected
+    @Deprecated(
+        "This function will be removed soon",
+        ReplaceWith("getDetailPlayer()"),
+        level = DeprecationLevel.WARNING
+    )
     private fun showSelectedItem(oPlayer: Player) {
-        Toast.makeText(this, "You choose the Player: " + oPlayer.strPlayerName, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "You choose the Player: " + oPlayer.strPlayerName, Toast.LENGTH_SHORT)
+            .show()
     }
 
     //  Move to Detail Player Page
