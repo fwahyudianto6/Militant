@@ -82,6 +82,12 @@ class HomeActivity : AppCompatActivity() {
                     navOptions
                 )
 
+                R.id.imenu_favorite_events -> navController.navigate(
+                    R.id.nav_favorite_events,
+                    null,
+                    navOptions
+                )
+
                 R.id.imenu_finished_events -> navController.navigate(
                     R.id.nav_finished_events,
                     null,

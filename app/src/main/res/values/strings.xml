@@ -184,10 +184,14 @@
     <!-- Bottom Navigation Events List-->
     <string name="menu_upcoming_events">Upcoming</string>
     <string name="menu_finished_events">Finished</string>
-    <string name="menu_profile">Profile</string>"
+    <string name="menu_favorites_events">Favorites</string>
+    <string name="menu_profile">Account</string>"
+    <string name="menu_settings">Settings</string>"
 
     <!-- Navbar Home-->
     <string name="navbar_home_title">MILITAN EVENTS</string>
     <string name="navbar_upcoming_events_home_subtitle">Upcoming Events</string>
     <string name="navbar_finished_events_home_subtitle">Finished Events</string>
+    <string name="navbar_favorite_events_home_subtitle">Favorite Events</string>
+    <string name="navbar_favorite_events_home_content">Recommendation event for you</string>
 </resources>

@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_event_available"
         android:title="@string/menu_upcoming_events" />
     <item
+        android:id="@+id/imenu_favorite_events"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/menu_favorites_events" />
+    <item
         android:id="@+id/imenu_finished_events"
         android:icon="@drawable/ic_event_busy"
         android:title="@string/menu_finished_events" />

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.events.FavoriteEventsFragment">
+
+    <TextView
+        android:id="@+id/favorite.events.tvtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/milan_typerev_bold"
+        android:text="@string/navbar_home_title"
+        android:textAlignment="textStart"
+        android:textColor="#D50000"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/favorite.events.tvsubtitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/milan_typerev"
+        android:text="@string/navbar_favorite_events_home_subtitle"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/favorite.events.tvtitle"
+        app:layout_constraintTop_toBottomOf="@id/favorite.events.tvtitle" />
+
+    <TextView
+        android:id="@+id/favorite.events.tvsubtitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/milan_typerev"
+        android:text="@string/navbar_favorite_events_home_content"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/favorite.events.tvsubtitle1"
+        app:layout_constraintTop_toBottomOf="@id/favorite.events.tvsubtitle1" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/favorite.rv.shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/favorite.events.tvsubtitle2">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/skeleton_bg" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorite.events.rvitem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/favorite.events.tvsubtitle2"
+        app:layout_constraintTop_toBottomOf="@id/favorite.events.tvsubtitle2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
