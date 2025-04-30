@@ -12,10 +12,13 @@ import com.fwahyudianto.militant.data.datasource.local.entity.FavoriteEvent
 
 @Dao
 interface IFavoriteEvent {
-    @Query("SELECT * from event_favorite ORDER BY id ASC")
+    @Query("SELECT * from event_favorite ORDER BY id DESC")
     fun getEvents(): LiveData<List<FavoriteEvent>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Query("SELECT * FROM event_favorite WHERE id = :eventId")
+    fun getFavoriteById(eventId: Int): LiveData<List<FavoriteEvent>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavorite(addEvent: FavoriteEvent)
 
     @Update
@@ -23,4 +26,10 @@ interface IFavoriteEvent {
 
     @Delete
     fun deleteFavorite(deleteEvent: FavoriteEvent)
+
+    @Query("DELETE FROM event_favorite WHERE id = :eventId")
+    fun deleteFavoriteById(eventId: Int)
+
+    @Query("SELECT EXISTS(SELECT 1 FROM event_favorite WHERE id = :id)")
+    fun isFavorite(id: String): Boolean
 }

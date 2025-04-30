@@ -13,15 +13,18 @@ abstract class FavoriteEventRoom : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var instance: FavoriteEventRoom? = null
+        private var INSTANCE: FavoriteEventRoom? = null
 
         @JvmStatic
-        fun getInstance(context: Context): FavoriteEventRoom =
-            instance ?: synchronized(this) {
-                instance ?: Room.databaseBuilder(
+        fun getDatabase(context: Context): FavoriteEventRoom {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
                     context.applicationContext,
                     FavoriteEventRoom::class.java, "DICODING.db"
                 ).build()
+                INSTANCE = instance
+                instance
             }
+        }
     }
 }

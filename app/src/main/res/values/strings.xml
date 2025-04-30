@@ -194,4 +194,10 @@
     <string name="navbar_finished_events_home_subtitle">Finished Events</string>
     <string name="navbar_favorite_events_home_subtitle">Favorite Events</string>
     <string name="navbar_favorite_events_home_content">Recommendation event for you</string>
+
+    <!-- Event Detail -->
+    <string name="remaining_quota">Remaining Quota: %1$d</string>
+    <string name="qouta">"Qouta: "</string>
+    <string name="organizer">"Organizer: "</string>
+    <string name="time">"Time: "</string>
 </resources>

@@ -74,9 +74,15 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 
-    //  Room
+    //  Room & Datastore
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.datastore.preferences)
     ksp(libs.androidx.room.compiler)
+
+    //  Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    implementation(libs.androidx.work.runtime)
 
     //  Unit Testing
     testImplementation(libs.junit)

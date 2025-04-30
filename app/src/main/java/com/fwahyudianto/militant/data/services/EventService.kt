@@ -27,7 +27,8 @@ interface EventService {
 
     //  Get Event by ID
     @GET("events/{id}")
-    fun getEvent(
-        @Path("id") id: String
-    ): Call<EventResponse>
+    fun getEvent(@Path("id") id: String): Call<EventResponse>
+
+    @GET("events/{name}")
+    fun getFavEventByName(@Path("name") name: String): EventResponse
 }
