@@ -4,6 +4,7 @@
     package="com.fwahyudianto.militant">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".ui.MyApp"

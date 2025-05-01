@@ -2,10 +2,15 @@ package com.fwahyudianto.militant.ui.account
 
 //  Import Library
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -20,6 +25,7 @@ class AccountFragment : Fragment() {
     private val oBinding get() = mAccountBinding!!
 
     private var isListenerActive = false
+    private var isSwitchingTheme = false
 
     private val mAccountViewModel: AccountViewModel by viewModels {
         ViewModelFactory.getInstance(
@@ -54,13 +60,39 @@ class AccountFragment : Fragment() {
 
         // Handle toggle switch
         oBinding.accountSwtTheme.setOnCheckedChangeListener { _, isChecked ->
-            if (isListenerActive) {
+            if (isListenerActive && !isSwitchingTheme) {
+                isSwitchingTheme = true
+
                 mAccountViewModel.saveThemeSetting(isChecked)
+
+                AppCompatDelegate.setDefaultNightMode(
+                    if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
+                    else AppCompatDelegate.MODE_NIGHT_NO
+                )
+
+                val fadeOut = AlphaAnimation(1f, 0f).apply {
+                    duration = 300
+                    fillAfter = true
+                }
+
+                oBinding.root.startAnimation(fadeOut)
+
+                fadeOut.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation?) {}
+                    override fun onAnimationEnd(animation: Animation?) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            //  Recreate Activity
+                            activity?.recreate()
+                        }, 100)
+                    }
+
+                    override fun onAnimationRepeat(animation: Animation?) {}
+                })
             }
 
             Log.d(
                 "Militan-AccountFragment",
-                "User ganti tema ke: ${if (isChecked) "Dark" else "Light"}"
+                "Change to theme : ${if (isChecked) "Dark" else "Light"}"
             )
         }
     }
