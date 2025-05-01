@@ -92,6 +92,7 @@
                 android:id="@+id/theme_icon"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginBottom="8dp"
                 android:contentDescription="@string/contents_description"
                 android:src="@drawable/ic_dark_mode"
                 android:tint="?attr/colorOnSurface"
@@ -112,6 +113,15 @@
                 app:layout_constraintStart_toEndOf="@id/theme_icon"
                 app:layout_constraintTop_toTopOf="@id/theme_icon" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dark_mode_title"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/account_swtTheme"
                 android:layout_width="wrap_content"
@@ -119,6 +129,61 @@
                 app:layout_constraintBottom_toBottomOf="@id/theme_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/theme_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Notification Switch Card -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notification_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:background="@drawable/bg_card_white"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/theme_card">
+
+            <ImageView
+                android:id="@+id/notification_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/contents_description"
+                android:src="@drawable/ic_notification"
+                android:tint="?attr/colorOnSurface"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UseAppTint,ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/notification_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/daily_reminder"
+                android:textColor="?android:textColorPrimary"
+                app:layout_constraintBottom_toBottomOf="@id/notification_icon"
+                app:layout_constraintEnd_toStartOf="@id/account_swtNotif"
+                app:layout_constraintStart_toEndOf="@id/notification_icon"
+                app:layout_constraintTop_toTopOf="@id/notification_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daily_reminder_title"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/account_swtNotif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/notification_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/notification_icon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

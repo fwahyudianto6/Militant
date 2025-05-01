@@ -205,6 +205,12 @@
     <string name="time">"Time: "</string>
 
     <!-- Theme Mode -->
-    <string name="light_mode">Tema Cerah</string>
-    <string name="dark_mode">Tema Gelap</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_title">Enable Dark Mode</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="daily_reminder_title">Enable Notification</string>
+
+    <!-- Notification -->
+    <string name="event_start">Start Event at 00:01 AM</string>"
 </resources>

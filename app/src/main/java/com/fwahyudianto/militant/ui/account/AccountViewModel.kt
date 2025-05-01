@@ -18,4 +18,14 @@ class AccountViewModel(private val settings: SettingPreferences) : ViewModel() {
             settings.saveThemeSetting(isDarkModeActive)
         }
     }
+
+    fun getNotificationSetting(): LiveData<Boolean> {
+        return settings.getNotificationSetting().asLiveData()
+    }
+
+    fun saveNotificationSetting(isEnabled: Boolean) {
+        viewModelScope.launch {
+            settings.saveNotificationSetting(isEnabled)
+        }
+    }
 }

@@ -1,6 +1,9 @@
 package com.fwahyudianto.militant.ui.account
 
 //  Import Library
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,20 +14,28 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.databinding.FragmentAccountBinding
+import com.fwahyudianto.militant.utils.NotificationWorker
 import com.fwahyudianto.militant.utils.SettingPreferences
 import com.fwahyudianto.militant.utils.ViewModelFactory
 import com.fwahyudianto.militant.utils.dataStore
+import java.util.concurrent.TimeUnit
 
 class AccountFragment : Fragment() {
     private var mAccountBinding: FragmentAccountBinding? = null
     private val oBinding get() = mAccountBinding!!
 
     private var isListenerActive = false
+    private var isNotificationEnabled = false
     private var isSwitchingTheme = false
 
     private val mAccountViewModel: AccountViewModel by viewModels {
@@ -50,12 +61,32 @@ class AccountFragment : Fragment() {
 
         // Clear old listener
         oBinding.accountSwtTheme.setOnCheckedChangeListener(null)
+        oBinding.accountSwtNotif.setOnCheckedChangeListener(null)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS), 100
+                )
+            }
+        }
 
         //  Theme toggle
         mAccountViewModel.getThemeSettings().observe(viewLifecycleOwner) { isDark ->
             isListenerActive = false
             oBinding.accountSwtTheme.isChecked = isDark
             isListenerActive = true
+        }
+        //  Notification toggle
+        mAccountViewModel.getNotificationSetting().observe(viewLifecycleOwner) { isEnable ->
+            isNotificationEnabled = false
+            oBinding.accountSwtNotif.isChecked = isEnable
+            isNotificationEnabled = true
         }
 
         // Handle toggle switch
@@ -94,6 +125,23 @@ class AccountFragment : Fragment() {
                 "Militan-AccountFragment",
                 "Change to theme : ${if (isChecked) "Dark" else "Light"}"
             )
+        }
+        //  Handle Notification toggle switch
+        oBinding.accountSwtNotif.setOnCheckedChangeListener { _, isChecked ->
+            mAccountViewModel.saveNotificationSetting(isChecked)
+
+            if (isChecked) {
+                val workRequest = PeriodicWorkRequestBuilder<NotificationWorker>(1, TimeUnit.DAYS)
+                    .build()
+                WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
+                    "Militan-EventNotification",
+                    ExistingPeriodicWorkPolicy.KEEP,
+                    workRequest
+                )
+            } else {
+                WorkManager.getInstance(requireContext())
+                    .cancelUniqueWork("Militan-EventNotification")
+            }
         }
     }
 
