@@ -1,5 +1,6 @@
 package com.fwahyudianto.militant.data.services
 
+import com.fwahyudianto.militant.data.response.DetailResponse
 import com.fwahyudianto.militant.data.response.EventResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -27,8 +28,8 @@ interface EventService {
 
     //  Get Event by ID
     @GET("events/{id}")
-    fun getEvent(@Path("id") id: String): Call<EventResponse>
+    fun getEvent(@Path("id") id: String): Call<DetailResponse>
 
     @GET("events/{name}")
-    fun getFavEventByName(@Path("name") name: String): EventResponse
+    suspend fun getFavEventByName(@Path("name") name: String): DetailResponse
 }

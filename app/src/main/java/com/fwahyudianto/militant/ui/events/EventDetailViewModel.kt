@@ -1,48 +1,55 @@
 package com.fwahyudianto.militant.ui.events
 
+//  Import Library
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fwahyudianto.militant.data.response.EventResponse
-import com.fwahyudianto.militant.data.response.ListEventsItem
+import com.fwahyudianto.militant.data.response.DetailResponse
+import com.fwahyudianto.militant.data.response.Event
 import com.fwahyudianto.militant.data.services.ApiConfig
 import retrofit2.Call
 import retrofit2.Response
 
-//  Import Library
-
-class EventDetailViewModel : ViewModel() {
-    private val mDetailEventsColl = MutableLiveData<List<ListEventsItem>>()
+class EventDetailViewModel() : ViewModel() {
+    private val mDetailEventsColl = MutableLiveData<Event>()
     private val mIsLoadingDetail = MutableLiveData<Boolean>()
     private val mErrorMessage = MutableLiveData<String>()
 
-    val mDetailEvents: LiveData<List<ListEventsItem>> = mDetailEventsColl
+    val mDetailEvents: LiveData<Event> = mDetailEventsColl
     val isLoadingDetail: LiveData<Boolean> = mIsLoadingDetail
     val errorMessage: LiveData<String> = mErrorMessage
+
+//    init {
+//        val eventId = savedStateHandle.get<String>(KEY_EVENT_ID)
+//        eventId?.let { getDetailEvents(it) }
+//    }
 
     fun getDetailEvents(eventId: String) {
         mIsLoadingDetail.value = true
 
         val oDetailEvents = ApiConfig.getApiService().getEvent(eventId)
-        oDetailEvents.enqueue(object : retrofit2.Callback<EventResponse> {
+        oDetailEvents.enqueue(object : retrofit2.Callback<DetailResponse> {
             override fun onResponse(
-                call: Call<EventResponse>,
-                response: Response<EventResponse>
+                call: Call<DetailResponse>,
+                response: Response<DetailResponse>
             ) {
                 mIsLoadingDetail.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-//                        Log.d(TAG, "onSuccess-DetailEvents: ${responseBody.listEvents}")
-                        setData(responseBody.listEvents, mDetailEventsColl)
+//                        Log.d(TAG, "onSuccess-DetailEvents: ${responseBody.event}")
+                        responseBody.event?.let { setData(it, mDetailEventsColl) }
+                    } else {
+                        mErrorMessage.value = "Response body is null!"
+                        return
                     }
                 } else {
                     Log.e(TAG, "onFailed-DetailEvents: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<EventResponse>, t: Throwable) {
+            override fun onFailure(call: Call<DetailResponse>, t: Throwable) {
                 mIsLoadingDetail.value = false
                 handleFailure(t)
             }
@@ -50,8 +57,8 @@ class EventDetailViewModel : ViewModel() {
     }
 
     private fun setData(
-        itemEvents: List<ListEventsItem>,
-        itemCollections: MutableLiveData<List<ListEventsItem>>
+        itemEvents: Event,
+        itemCollections: MutableLiveData<Event>
     ) {
         itemCollections.value = itemEvents
     }
@@ -71,5 +78,6 @@ class EventDetailViewModel : ViewModel() {
 
     companion object {
         private const val TAG = "DetailEventsViewModel"
+        const val KEY_EVENT_ID = "eventId"
     }
 }

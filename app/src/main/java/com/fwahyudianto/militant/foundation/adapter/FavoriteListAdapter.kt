@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fwahyudianto.militant.data.response.ListEventsItem
-import com.fwahyudianto.militant.databinding.ItemEventsListBinding
+import com.fwahyudianto.militant.databinding.ItemFavoriteEventsListBinding
 import com.fwahyudianto.militant.ui.EventDetailActivity
 
 class FavoriteListAdapter :
@@ -32,18 +32,20 @@ class FavoriteListAdapter :
         }
     }
 
-    class ViewHolder(private val binding: ItemEventsListBinding) :
+    class ViewHolder(private val binding: ItemFavoriteEventsListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListEventsItem) {
             binding.tvItemEventsName.text = item.name
+            binding.tvItemEventsCategory.text = item.category
             binding.tvItemEventsSummary.text = item.summary
             Glide.with(binding.root.context)
-                .load(item.mediaCover)
+                .load(item.imageLogo)
                 .into(binding.imgItemEventsImage)
 
             binding.root.setOnClickListener {
                 val intentDetail = Intent(binding.root.context, EventDetailActivity::class.java)
-                intentDetail.putExtra(EventDetailActivity.EVENT_DETAIL_ID, item.id)
+
+                intentDetail.putExtra(EventDetailActivity.EVENT_DETAIL, item)
                 binding.root.context.startActivity(intentDetail)
             }
         }
@@ -51,7 +53,11 @@ class FavoriteListAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ItemEventsListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemFavoriteEventsListBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return ViewHolder(binding)
     }
 

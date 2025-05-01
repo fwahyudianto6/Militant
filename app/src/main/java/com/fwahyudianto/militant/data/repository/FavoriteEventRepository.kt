@@ -8,19 +8,19 @@ import com.fwahyudianto.militant.data.datasource.local.room.IFavoriteEvent
 class FavoriteEventRepository private constructor(private val iFavorite: IFavoriteEvent) {
     fun getList(): LiveData<List<FavoriteEvent>> = iFavorite.getEvents()
 
-    fun add(addEvent: FavoriteEvent) {
+    suspend fun add(addEvent: FavoriteEvent) {
         iFavorite.insertFavorite(addEvent)
     }
 
-    fun update(editEvent: FavoriteEvent) {
+    suspend fun update(editEvent: FavoriteEvent) {
         iFavorite.updateFavorite(editEvent)
     }
 
-    fun delete(deleteEvent: FavoriteEvent) {
+    suspend fun delete(deleteEvent: FavoriteEvent) {
         iFavorite.deleteFavorite(deleteEvent)
     }
 
-    fun deleteById(eventId: Int) {
+    suspend fun deleteById(eventId: Int) {
         iFavorite.deleteFavoriteById(eventId)
     }
 
@@ -31,9 +31,9 @@ class FavoriteEventRepository private constructor(private val iFavorite: IFavori
         @Volatile
         private var instance: FavoriteEventRepository? = null
         fun getInstance(
-            favoriteDao: IFavoriteEvent
+            iFav: IFavoriteEvent
         ): FavoriteEventRepository = instance ?: synchronized(this) {
-            instance ?: FavoriteEventRepository(favoriteDao)
+            instance ?: FavoriteEventRepository(iFav)
         }.also { instance = it }
     }
 }

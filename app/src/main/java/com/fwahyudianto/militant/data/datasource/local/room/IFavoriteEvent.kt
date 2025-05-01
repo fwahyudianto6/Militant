@@ -19,16 +19,16 @@ interface IFavoriteEvent {
     fun getFavoriteById(eventId: Int): LiveData<List<FavoriteEvent>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFavorite(addEvent: FavoriteEvent)
+    suspend fun insertFavorite(addEvent: FavoriteEvent)
 
     @Update
-    fun updateFavorite(editEvent: FavoriteEvent)
+    suspend fun updateFavorite(editEvent: FavoriteEvent)
 
     @Delete
-    fun deleteFavorite(deleteEvent: FavoriteEvent)
+    suspend fun deleteFavorite(deleteEvent: FavoriteEvent)
 
     @Query("DELETE FROM event_favorite WHERE id = :eventId")
-    fun deleteFavoriteById(eventId: Int)
+    suspend fun deleteFavoriteById(eventId: Int)
 
     @Query("SELECT EXISTS(SELECT 1 FROM event_favorite WHERE id = :id)")
     fun isFavorite(id: String): Boolean

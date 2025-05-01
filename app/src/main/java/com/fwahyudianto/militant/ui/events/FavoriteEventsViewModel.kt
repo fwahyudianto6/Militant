@@ -7,16 +7,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fwahyudianto.militant.data.datasource.local.entity.FavoriteEvent
 import com.fwahyudianto.militant.data.repository.FavoriteEventRepository
-import com.fwahyudianto.militant.data.response.EventResponse
+import com.fwahyudianto.militant.data.response.DetailResponse
 import com.fwahyudianto.militant.data.services.ApiConfig
 import com.fwahyudianto.militant.utils.Result
 import kotlinx.coroutines.launch
 
 class FavoriteEventsViewModel(private val repoFavorite: FavoriteEventRepository) : ViewModel() {
-    private val _result = MutableLiveData<Result<EventResponse>>()
-    val result: LiveData<Result<EventResponse>> = _result
+    private val _result = MutableLiveData<Result<DetailResponse>>()
+    val result: LiveData<Result<DetailResponse>> = _result
 
-    fun getDetailFavoriteUser(eventName: String) {
+    fun getDetailFavorite(eventName: String) {
         viewModelScope.launch {
             _result.value = Result.Loading
             try {
@@ -30,7 +30,7 @@ class FavoriteEventsViewModel(private val repoFavorite: FavoriteEventRepository)
 
     fun getFavEvents(): LiveData<List<FavoriteEvent>> = repoFavorite.getList()
 
-    fun insertUser(favorite: FavoriteEvent) {
+    fun insertFavEvent(favorite: FavoriteEvent) {
         viewModelScope.launch {
             repoFavorite.add(favorite)
         }

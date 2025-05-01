@@ -7,7 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.fwahyudianto.militant.data.datasource.local.entity.FavoriteEvent
 
-@Database(entities = [FavoriteEvent::class], version = 1, exportSchema = false)
+@Database(entities = [FavoriteEvent::class], version = 2, exportSchema = false)
 abstract class FavoriteEventRoom : RoomDatabase() {
     abstract fun iFavoriteEvent(): IFavoriteEvent
 
@@ -21,7 +21,9 @@ abstract class FavoriteEventRoom : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     FavoriteEventRoom::class.java, "DICODING.db"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration(true)
+                    .build()
                 INSTANCE = instance
                 instance
             }

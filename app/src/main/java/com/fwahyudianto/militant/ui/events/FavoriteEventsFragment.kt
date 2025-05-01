@@ -60,9 +60,9 @@ class FavoriteEventsFragment : Fragment() {
             events.map {
                 val item = ListEventsItem(
                     id = it.id,
-                    mediaCover = it.image.toString(),
-                    name = it.name.toString(),
-                    summary = it.summary.toString()
+                    name = it.name, category = it.category,
+                    imageLogo = it.image,
+                    summary = it.summary
                 )
                 items.add(item)
             }
