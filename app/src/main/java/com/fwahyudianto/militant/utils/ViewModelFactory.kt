@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fwahyudianto.militant.data.Injection
 import com.fwahyudianto.militant.data.repository.FavoriteEventRepository
+import com.fwahyudianto.militant.ui.account.AccountViewModel
 import com.fwahyudianto.militant.ui.events.FavoriteEventsViewModel
 
 class ViewModelFactory private constructor(
     private val repository: FavoriteEventRepository? = null,
-    private val pref: SettingPreferences? = null
+    private val settings: SettingPreferences? = null
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -18,9 +19,11 @@ class ViewModelFactory private constructor(
             modelClass.isAssignableFrom(FavoriteEventsViewModel::class.java) -> {
                 FavoriteEventsViewModel(repository!!) as T
             }
-//            modelClass.isAssignableFrom(SettingsViewModel::class.java) -> {
-//                SettingsViewModel(pref!!) as T
-//            }
+
+            modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
+                AccountViewModel(settings!!) as T
+            }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
@@ -34,7 +37,7 @@ class ViewModelFactory private constructor(
                 instance ?: ViewModelFactory(repository = Injection.provideRepository(context))
             }.also { instance = it }
 
-        fun getInstance(pref: SettingPreferences): ViewModelFactory =
-            ViewModelFactory(pref = pref)
+        fun getInstance(settings: SettingPreferences): ViewModelFactory =
+            ViewModelFactory(settings = settings)
     }
 }

@@ -1,9 +1,14 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.Militant" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.Militant" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Warna latar & teks -->
+        <item name="android:colorBackground">@color/dark_gray</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/light_gray</item>
     </style>
 
     <!--    ThemeOverlay.AppCompat.Dark.ActionBar-->

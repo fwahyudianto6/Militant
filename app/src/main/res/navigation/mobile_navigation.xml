@@ -61,4 +61,9 @@
         android:name="com.fwahyudianto.militant.ui.events.FinishedEventsFragment"
         android:label="@string/menu_finished_events"
         tools:layout="@layout/fragment_finished_events" />
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.fwahyudianto.militant.ui.account.AccountFragment"
+        android:label="@string/menu_account"
+        tools:layout="@layout/fragment_account" />
 </navigation>

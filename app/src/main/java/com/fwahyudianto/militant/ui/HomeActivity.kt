@@ -93,6 +93,12 @@ class HomeActivity : AppCompatActivity() {
                     null,
                     navOptions
                 )
+
+                R.id.imenu_account -> navController.navigate(
+                    R.id.nav_account,
+                    null,
+                    navOptions
+                )
             }
 
             true

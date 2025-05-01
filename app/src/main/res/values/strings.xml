@@ -21,6 +21,7 @@
     <string name="developer_photo">https://avatars.githubusercontent.com/u/12522356?v=4</string>
     <string name="developer_name">Wahyudianto, Fajar</string>
     <string name="developer_email">fwahyudi06@gmail.com</string>
+    <string name="developer_location">Tangerang, Indonesia</string>
 
     <!-- ITEM LIST -->
     <!-- Players List -->
@@ -185,7 +186,7 @@
     <string name="menu_upcoming_events">Upcoming</string>
     <string name="menu_finished_events">Finished</string>
     <string name="menu_favorites_events">Favorites</string>
-    <string name="menu_profile">Account</string>"
+    <string name="menu_account">Account</string>"
     <string name="menu_settings">Settings</string>"
 
     <!-- Navbar Home-->
@@ -194,10 +195,16 @@
     <string name="navbar_finished_events_home_subtitle">Finished Events</string>
     <string name="navbar_favorite_events_home_subtitle">Favorite Events</string>
     <string name="navbar_favorite_events_home_content">Recommendation event for you</string>
+    <string name="navbar_account_home_subtitle">Account</string>
+    <string name="navbar_settings_home_subtitle">Settings</string>
 
     <!-- Event Detail -->
     <string name="remaining_quota">Remaining Quota: %1$d</string>
     <string name="qouta">"Qouta: "</string>
     <string name="organizer">"Organizer: "</string>
     <string name="time">"Time: "</string>
+
+    <!-- Theme Mode -->
+    <string name="light_mode">Tema Cerah</string>
+    <string name="dark_mode">Tema Gelap</string>
 </resources>
