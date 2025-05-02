@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class FavoriteEventsViewModel(private val repoFavorite: FavoriteEventRepository) : ViewModel() {
     private val _result = MutableLiveData<Result<DetailResponse>>()
-    val result: LiveData<Result<DetailResponse>> = _result
+    //  val result: LiveData<Result<DetailResponse>> = _result
 
     fun getDetailFavorite(eventName: String) {
         viewModelScope.launch {

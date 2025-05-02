@@ -67,15 +67,6 @@ class EventDetailActivity : AppCompatActivity() {
         mFavoriteViewModel = viewModels<FavoriteEventsViewModel> { factory }.value
 
         mFavoriteViewModel.getDetailFavorite(dtEvent.id.toString())
-//        mFavoriteViewModel.result.observe(this) { result ->
-//            if (result != null) {
-//                when (result) {
-//                    is Result.Error -> TODO()
-//                    Result.Loading -> TODO()
-//                    is Result.Success<*> -> TODO()
-//                }
-//            }
-//        }
 
         oDetailBinding.fabFavorite.setOnClickListener {
             val farEvent = favoriteEvent
@@ -213,16 +204,13 @@ class EventDetailActivity : AppCompatActivity() {
     }
 
     private fun showNotification(message: String, strObject: String?) {
-        var message = message
-        if (!strObject.isNullOrEmpty()) {
-            message = "$message $strObject"
-        }
+        @Suppress("NAME_SHADOWING") var message = message
+        if (!strObject.isNullOrEmpty()) message = "$message $strObject"
 
         Snackbar.make(oDetailBinding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
     companion object {
         const val EVENT_DETAIL = "EVENT_DETAIL"
-        const val EVENT_DETAIL_ID = "EVENT_DETAIL_ID"
     }
 }

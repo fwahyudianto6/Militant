@@ -21,10 +21,6 @@ import com.fwahyudianto.militant.databinding.FragmentClubBinding
  */
 
 class ClubFragment : Fragment() {
-    companion object {
-        // fun newInstance() = ClubFragment()
-    }
-
     //  Properties
     private val mClubViewModel: ClubViewModel by viewModels()
     private var mClubBinding: FragmentClubBinding? = null

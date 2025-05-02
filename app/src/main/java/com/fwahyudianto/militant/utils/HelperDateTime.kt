@@ -33,12 +33,12 @@ class HelperDateTime {
                         outputFormat.timeZone = TimeZone.getTimeZone("Asia/Jakarta")
                         "${outputFormat.format(date)} WIB"
                     } else {
-                        Log.e(TAG, "Gagal mem-parsing waktu: $isoTime dengan SimpleDateFormat")
+                        Log.e(TAG, "Failed to parse date: $isoTime with Simple Date Format")
                         isoTime
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Terjadi kesalahan saat memformat waktu: ${e.message}", e)
+                Log.e(TAG, "An error occurred while formatting the time: ${e.message}", e)
                 isoTime
             }
         }

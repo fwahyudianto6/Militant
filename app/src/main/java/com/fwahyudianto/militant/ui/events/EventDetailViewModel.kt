@@ -11,19 +11,13 @@ import com.fwahyudianto.militant.data.services.ApiConfig
 import retrofit2.Call
 import retrofit2.Response
 
-class EventDetailViewModel() : ViewModel() {
+class EventDetailViewModel : ViewModel() {
     private val mDetailEventsColl = MutableLiveData<Event>()
     private val mIsLoadingDetail = MutableLiveData<Boolean>()
     private val mErrorMessage = MutableLiveData<String>()
 
     val mDetailEvents: LiveData<Event> = mDetailEventsColl
-    val isLoadingDetail: LiveData<Boolean> = mIsLoadingDetail
     val errorMessage: LiveData<String> = mErrorMessage
-
-//    init {
-//        val eventId = savedStateHandle.get<String>(KEY_EVENT_ID)
-//        eventId?.let { getDetailEvents(it) }
-//    }
 
     fun getDetailEvents(eventId: String) {
         mIsLoadingDetail.value = true
@@ -38,7 +32,7 @@ class EventDetailViewModel() : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-//                        Log.d(TAG, "onSuccess-DetailEvents: ${responseBody.event}")
+                        //  Log.d(TAG, "onSuccess-DetailEvents: ${responseBody.event}")
                         responseBody.event?.let { setData(it, mDetailEventsColl) }
                     } else {
                         mErrorMessage.value = "Response body is null!"
@@ -78,6 +72,5 @@ class EventDetailViewModel() : ViewModel() {
 
     companion object {
         private const val TAG = "DetailEventsViewModel"
-        const val KEY_EVENT_ID = "eventId"
     }
 }

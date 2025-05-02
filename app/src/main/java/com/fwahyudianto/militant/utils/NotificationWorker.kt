@@ -13,7 +13,7 @@ import com.fwahyudianto.militant.R
 import com.fwahyudianto.militant.data.services.ApiConfig
 
 class NotificationWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
-    private val time = context.getString(R.string.event_start)
+    //  private val time = context.getString(R.string.event_start)
 
     override fun doWork(): Result {
         Log.d("Militan-NotificationWorker", "Starting Worker ...")
@@ -25,7 +25,7 @@ class NotificationWorker(context: Context, params: WorkerParameters) : Worker(co
                     val remaining = (it.quota ?: 0) - (it.registrants ?: 0)
                     val formattedTime = HelperDateTime.formatDateTime(it.beginTime!!)
                     val title = it.name!!
-                    val message = formattedTime + ". Remaining Quota : $remaining"
+                    val message = "$formattedTime. Remaining Quota : $remaining"
 
                     showNotification(title, message)
                 }

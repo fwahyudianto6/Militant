@@ -119,7 +119,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     //  Replace Fragment
-    @Suppress("Unused")
+    @Suppress("unused")
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -131,7 +131,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     //  Close Fragment
-    @Suppress("Unused")
+    @Suppress("unused")
     fun closeFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()

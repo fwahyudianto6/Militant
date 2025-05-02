@@ -15,18 +15,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="25sp"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:paddingTop="25sp">
 
         <ImageView
             android:id="@+id/img_item_photo"
             android:layout_width="70dp"
             android:layout_height="100dp"
+            android:contentDescription="@string/description"
             android:scaleType="centerCrop"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/description"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -48,8 +48,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textAlignment="center"
             android:maxLines="5"
+            android:textAlignment="center"
             card_view:layout_constraintBottom_toBottomOf="@+id/img_item_photo"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
             card_view:layout_constraintStart_toStartOf="@+id/tv_item_name"

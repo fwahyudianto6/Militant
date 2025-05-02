@@ -12,10 +12,12 @@ class FavoriteEventRepository private constructor(private val iFavorite: IFavori
         iFavorite.insertFavorite(addEvent)
     }
 
+    @Suppress("Unused")
     suspend fun update(editEvent: FavoriteEvent) {
         iFavorite.updateFavorite(editEvent)
     }
 
+    @Suppress("Unused")
     suspend fun delete(deleteEvent: FavoriteEvent) {
         iFavorite.deleteFavorite(deleteEvent)
     }

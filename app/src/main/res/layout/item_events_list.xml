@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
+
+    <variable
             name="dtEvents"
             type="com.fwahyudianto.militant.data.response.ListEventsItem" />
     </data>
