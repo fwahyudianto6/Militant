@@ -1,6 +1,7 @@
 package com.fwahyudianto.militant.data.services
 
 //  Import Library
+import com.fwahyudianto.militant.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,25 +15,30 @@ import java.util.concurrent.TimeUnit
  *  Email 	: me@fwahyudianto.id
  */
 
-class ApiConfig {
-    companion object {
-        fun getApiService(): EventService {
-            val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+object ApiConfig {
+    private const val BASE_URL = BuildConfig.BASE_URL
 
-            val client = OkHttpClient.Builder()
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .addInterceptor(loggingInterceptor)
-                .build()
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://event-api.dicoding.dev/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+    fun getApiService(): EventService {
+        val loggingInterceptor =
+            HttpLoggingInterceptor().setLevel(
+                if (BuildConfig.DEBUG)
+                    HttpLoggingInterceptor.Level.BODY
+                else
+                    HttpLoggingInterceptor.Level.NONE
+            )
 
-            return retrofit.create(EventService::class.java)
-        }
+        val client = OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
+            .addInterceptor(loggingInterceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+
+        return retrofit.create(EventService::class.java)
     }
 }

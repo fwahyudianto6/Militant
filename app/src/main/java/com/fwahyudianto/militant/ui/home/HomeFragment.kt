@@ -76,14 +76,14 @@ class HomeFragment : Fragment() {
 
         showLoading(
             mHomeViewModel.isLoadingUpcoming,
-            mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming,
-            mHomeBinding!!.root, mHomeBinding!!.homeEventsTvsubtitle2,
-            mHomeBinding!!.homeImgsShimmer, mHomeBinding!!.homeImgsUpcoming
+            oBinding.homeImgsShimmer, oBinding.homeImgsUpcoming,
+            oBinding.root, oBinding.homeEventsTvsubtitle2,
+            oBinding.homeImgsShimmer, oBinding.homeImgsUpcoming
         )
 
         showLoading(
             mHomeViewModel.isLoadingFinished,
-            mHomeBinding!!.homeRvShimmer, mHomeBinding!!.homeEventsRvfinished
+            oBinding.homeRvShimmer, oBinding.homeEventsRvfinished
         )
 
         mHomeViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
@@ -133,7 +133,7 @@ class HomeFragment : Fragment() {
             for (i in mUpcoming.indices) {
                 imgList.add(SlideModel(mUpcoming[i].mediaCover, mUpcoming[i].name))
             }
-            mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
+            oBinding.homeImgsUpcoming.setImageList(imgList, ScaleTypes.FIT)
         }
     }
 
@@ -152,7 +152,7 @@ class HomeFragment : Fragment() {
             for (i in mEvent.indices) {
                 imgList.add(SlideModel(mEvent[i].mediaCover, mEvent[i].name))
             }
-            mHomeBinding?.homeImgsUpcoming?.setImageList(imgList, ScaleTypes.FIT)
+            oBinding.homeImgsUpcoming.setImageList(imgList, ScaleTypes.FIT)
             getFinishedEvents(mEvent)
         }
     }

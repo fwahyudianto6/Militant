@@ -21,10 +21,6 @@ import com.fwahyudianto.militant.databinding.FragmentEventsBinding
  */
 
 class EventsFragment : Fragment() {
-    companion object {
-        // fun newInstance() = EventsFragment()
-    }
-
     //  Properties
     private val mEventsViewModel: EventsViewModel by viewModels()
     private var mEventsBinding: FragmentEventsBinding? = null
@@ -48,34 +44,7 @@ class EventsFragment : Fragment() {
                 oBinding.tvEvents.text = it
             }
         }
-//        // Get NavController from NavHostFragment
-//        val navHostFragment =
-//            childFragmentManager.findFragmentById(R.id.event_nav_host) as NavHostFragment
-//        navController = navHostFragment.navController
-//
-//        // Set up Bottom Navigation with NavController
-//        oBinding.bottomNavEventsView.setupWithNavController(navController)
-
-//        oBinding.bottomNavEventsView.setOnItemSelectedListener { item ->
-//            Log.d("BottomNav", "Clicked: ${item.itemId}")  // Debug Log
-//            Log.d("DEV-bottomNavEventsView", "bottomNavEventsView: " + item.itemId + " " + item.title)
-//
-//            when (item.itemId) {
-//                R.id.nav_upcoming_events -> replaceFragment(UpcomingEventsFragment())
-//                R.id.nav_finished_events -> replaceFragment(FinishedEventsFragment())
-//                else -> return@setOnItemSelectedListener false
-//            }
-//
-//            true
-//        }
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        parentFragmentManager.beginTransaction()
-//            .replace(R.id.event_nav_host, fragment)
-//            .addToBackStack(null)
-//            .commit()
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

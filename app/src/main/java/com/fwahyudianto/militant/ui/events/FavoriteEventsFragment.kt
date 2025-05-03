@@ -37,8 +37,7 @@ class FavoriteEventsFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
-        oBinding
+        mFavoriteEventsBinding = null
     }
 
     private fun setupRecyclerView() {
@@ -51,8 +50,6 @@ class FavoriteEventsFragment : Fragment() {
 
     private fun observeViewModel() {
         mFavoriteEventsViewModel.getFavEvents().observe(viewLifecycleOwner) { events ->
-//            oBinding.tvFavNoData.visibility = if (events.isEmpty()) View.VISIBLE else View.GONE
-//            oBinding.tvFavorite.visibility = if (events.isEmpty()) View.GONE else View.VISIBLE
             val items = arrayListOf<ListEventsItem>()
             events.map {
                 val item = ListEventsItem(

@@ -16,6 +16,7 @@ import retrofit2.http.Query
 
 interface EventService {
     //  Get All Events
+    @Suppress("Unused")
     @GET("events")
     fun getList(): Call<EventResponse>
 

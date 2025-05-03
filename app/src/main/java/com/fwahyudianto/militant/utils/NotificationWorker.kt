@@ -23,8 +23,9 @@ class NotificationWorker(context: Context, params: WorkerParameters) : Worker(co
                 val event = response.body()?.listEvents?.firstOrNull()
                 event?.let {
                     val remaining = (it.quota ?: 0) - (it.registrants ?: 0)
-                    val formattedTime = HelperDateTime.formatDateTime(it.beginTime!!)
-                    val title = it.name!!
+                    val formattedTime =
+                        it.beginTime?.let { begin -> HelperDateTime.formatDateTime(begin) }
+                    val title = it.name
                     val message = "$formattedTime. Remaining Quota : $remaining"
 
                     showNotification(title, message)
@@ -39,7 +40,7 @@ class NotificationWorker(context: Context, params: WorkerParameters) : Worker(co
         }
     }
 
-    private fun showNotification(title: String, message: String) {
+    private fun showNotification(title: String?, message: String) {
         val channelId = "event_channel"
         val notificationManager =
             applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

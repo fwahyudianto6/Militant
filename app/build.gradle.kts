@@ -15,9 +15,12 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0.16"
+        versionName = "1.0.17"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //  Refactor
+        buildConfigField("String", "BASE_URL", "\"https://event-api.dicoding.dev/\"")
     }
 
     buildTypes {
@@ -39,6 +42,8 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        //  Refactor
+        buildConfig = true
     }
 }
 

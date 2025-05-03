@@ -138,7 +138,9 @@ class EventDetailActivity : AppCompatActivity() {
                     tvDetailEventsOwner.text =
                         getString(R.string.organizer) + detailEvent.ownerName
                     tvDetailEventsTime.text =
-                        getString(R.string.time) + HelperDateTime.formatDateTime(detailEvent.beginTime!!)
+                        getString(R.string.time) + detailEvent.beginTime?.let {
+                            HelperDateTime.formatDateTime(it)
+                        }
                     tvDetailEventsQouta.text = getString(R.string.qouta) + detailEvent.quota
                     tvDetailEventsRemainingQouta.text =
                         getString(R.string.remaining_quota, remainingQuota)
