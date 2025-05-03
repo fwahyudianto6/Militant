@@ -17,6 +17,7 @@ class EventDetailViewModel : ViewModel() {
     private val mErrorMessage = MutableLiveData<String>()
 
     val mDetailEvents: LiveData<Event> = mDetailEventsColl
+    val isLoadingDetail: LiveData<Boolean> = mIsLoadingDetail
     val errorMessage: LiveData<String> = mErrorMessage
 
     fun getDetailEvents(eventId: String) {

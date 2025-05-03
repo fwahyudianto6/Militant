@@ -236,7 +236,7 @@ class HomeFragment : Fragment() {
 
     @Suppress("Unused")
     private fun sendSelectedEvent(event: ListEventsItem) {
-//        Log.d("DEV-sendSelectedEvent", event.toString())
+        //  Log.d("DEV-sendSelectedEvent", event.toString())
         val oIntEventDetail = Intent(requireContext(), EventDetailActivity::class.java)
 
         oIntEventDetail.putExtra(EventDetailActivity.EVENT_DETAIL, event)

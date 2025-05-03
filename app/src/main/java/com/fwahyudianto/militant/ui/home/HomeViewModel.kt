@@ -59,18 +59,17 @@ class HomeViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-//                        Log.d(TAG, "onSuccess-FinishedEvents: ${responseBody.listEvents}")
+                        // Log.d(TAG, "onSuccess-FinishedEvents: ${responseBody.listEvents}")
                         setData(responseBody.listEvents, mFinishedEventsColl)
                     }
                 } else {
-                    Log.e(TAG, "onFailed-FinishedEvents: ${response.message()}")
+                    Log.e(TAG, "Militan-FinishedEvents-onFailed-: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
                 mIsLoadingFinished.value = false
-//                Log.e(TAG, "onFailure-FinishedEvents: ${t.message}")
-                handleFailure("FinishedEvents", t)
+                handleFailure("Militan-FinishedEvents-onFailure", t)
             }
         })
     }
@@ -88,17 +87,16 @@ class HomeViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-//                        Log.d(TAG, "onSuccess-UpcomingEvents: ${responseBody.listEvents}")
                         setData(responseBody.listEvents, mUpcomingEventsColl)
                     }
                 } else {
-                    Log.e(TAG, "onFailed-UpcomingEvents: ${response.message()}")
+                    Log.e(TAG, "Militan-UpcomingEvents-onFailed: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
                 mIsLoadingUpcoming.value = false
-                handleFailure("UpcomingEvents", t)
+                handleFailure("Militan-UpcomingEvents-onFailure", t)
             }
         })
     }
@@ -114,17 +112,16 @@ class HomeViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        Log.d(TAG, "onSuccess-Events: ${responseBody.listEvents}")
                         setData(responseBody.listEvents, mSearchEventsColl)
                     }
                 } else {
-                    Log.e(TAG, "onFailed-Events: ${response.message()}")
+                    Log.e(TAG, "Militan-searchEvents-onFailed: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<EventResponse>, t: Throwable) {
                 mIsLoadingUpcoming.value = false
-                handleFailure("Events", t)
+                handleFailure("Militan-searchEvents-onFailure", t)
             }
         })
     }

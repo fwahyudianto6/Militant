@@ -51,7 +51,7 @@ class EventDetailActivity : AppCompatActivity() {
 
         val dtEvent = intent.getParcelableExtra<ListEventsItem>("EVENT_DETAIL")
         if (dtEvent == null) {
-            showNotification("Event ID not available!", null)
+            showNotification(getString(R.string.event_warn_id_not_available), null)
             finish()
             return
         }
@@ -190,6 +190,11 @@ class EventDetailActivity : AppCompatActivity() {
                 showNotification("Data not found!", eventId.toString())
             }
         }
+
+        mDetailViewModel.isLoadingDetail.observe(this) { isLoading ->
+            oDetailBinding.detailPrgbar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
         mDetailViewModel.errorMessage.observe(this) { error ->
             Snackbar.make(oDetailBinding.root, error, Snackbar.LENGTH_LONG).show()
         }

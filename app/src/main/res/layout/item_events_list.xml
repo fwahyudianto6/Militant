@@ -19,7 +19,6 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="16dp"
-        app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,8 +47,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#66000000" />
+                    android:layout_height="match_parent" />
             </FrameLayout>
 
             <TextView
@@ -60,7 +58,7 @@
                 android:layout_marginEnd="8dp"
                 android:text='@{dtEvents.category}'
                 android:textAlignment="textStart"
-                android:textColor="#212121"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +90,7 @@
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text='@{dtEvents.summary}'
-                android:textColor="#424242"
+                android:textColor="?android:textColorPrimary"
                 app:layout_constraintBottom_toBottomOf="@+id/fl_image_holder"
                 app:layout_constraintEnd_toEndOf="@+id/tv_item_events_name"
                 app:layout_constraintStart_toStartOf="@+id/tv_item_events_name"

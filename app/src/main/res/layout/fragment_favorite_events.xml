@@ -29,7 +29,7 @@
         android:fontFamily="@font/milan_typerev"
         android:text="@string/navbar_favorite_events_home_subtitle"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@id/favorite.events.tvtitle"
         app:layout_constraintTop_toBottomOf="@id/favorite.events.tvtitle" />
@@ -42,7 +42,7 @@
         android:fontFamily="@font/milan_typerev"
         android:text="@string/navbar_favorite_events_home_content"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@id/favorite.events.tvsubtitle1"
         app:layout_constraintTop_toBottomOf="@id/favorite.events.tvsubtitle1" />

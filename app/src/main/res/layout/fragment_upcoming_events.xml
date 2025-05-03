@@ -29,7 +29,7 @@
         android:fontFamily="@font/milan_typerev"
         android:text="@string/navbar_upcoming_events_home_subtitle"
         android:textAlignment="textStart"
-        android:textColor="@color/black"
+        android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@id/upcoming.events.tvtitle"
         app:layout_constraintTop_toBottomOf="@id/upcoming.events.tvtitle" />

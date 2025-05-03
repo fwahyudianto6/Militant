@@ -153,5 +153,6 @@
     <!-- Notification -->
     <string name="daily_reminder">Daily Reminder</string>
     <string name="daily_reminder_title">Enable Notification</string>
-    <string name="event_start" tools:ignore="UnusedResources">Start Event at 00:01 AM</string>"
+    <string name="event_start" tools:ignore="UnusedResources">Start Event at 00:01 AM</string>
+    <string name="event_warn_id_not_available">Event ID not available!</string>"
 </resources>
